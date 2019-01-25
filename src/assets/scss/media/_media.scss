@@ -1,0 +1,8 @@
+@media all and (min-width: 320px) and (max-width: 767px) {
+  @import "min 320-max767";
+}
+
+@include media-breakpoint-up(sm) {
+  @import "min 320-max767";
+}
+

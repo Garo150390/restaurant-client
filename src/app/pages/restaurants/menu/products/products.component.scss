@@ -1,0 +1,21 @@
+@import "~src/assets/scss/core/variables";
+
+.single-menu {
+  background: $white;
+  border-radius: 10px;
+  padding: 30px;
+  margin-top: 20px;
+
+  .title-wrap {
+    margin-bottom: 20px;
+  }
+
+  p {
+    margin-bottom: 0;
+    max-width: 392px;
+  }
+
+  .price {
+    color: $primary-color;
+  }
+}

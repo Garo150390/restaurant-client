@@ -1,0 +1,74 @@
+<form [formGroup]="reservationForms"
+      (ngSubmit)="submitReservationForm()">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="name">Name</label>
+      <input formControlName="name" type="text"
+             (keyup)="alertValidate(name)" #name
+             class="form-control" id="name" placeholder="Name">
+      <small *ngIf="(reservationForms.controls['name'].dirty &&
+        reservationForms.controls['name'].hasError('required')) ||
+         (reservationForms.controls['name'].touched &&
+         reservationForms.controls['name'].hasError('required'))">
+        Name is required
+      </small>
+      <small *ngIf="reservationForms.controls['name'].dirty
+           && reservationForms.controls['name'].hasError('pattern')">
+        Invalid name
+      </small>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="surname">SurName</label>
+      <input type="text" class="form-control" id="surname" placeholder="Surname">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="phone">Phone number</label>
+      <input formControlName="phone" type="text"
+             (keyup)="alertValidate(phone)" #phone
+             class="form-control" id="phone" placeholder="Phone number">
+      <small *ngIf="(reservationForms.controls['phone'].dirty &&
+        reservationForms.controls['phone'].hasError('required')) ||
+         (reservationForms.controls['phone'].touched &&
+         reservationForms.controls['phone'].hasError('required'))">
+        Phone is required
+      </small>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="email">Email</label>
+      <input formControlName="email" type="email"
+             (keyup)="alertValidate(email)" #email
+             class="form-control" id="email" placeholder="Email">
+      <small *ngIf="(reservationForms.controls['email'].dirty &&
+        reservationForms.controls['email'].hasError('required')) ||
+         (reservationForms.controls['email'].touched &&
+         reservationForms.controls['email'].hasError('required'))">
+        Email is required
+      </small>
+      <small *ngIf="reservationForms.controls['email'].dirty
+           && reservationForms.controls['email'].hasError('pattern')">
+        Invalid email
+      </small>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <select name="occasions" class="form-control">
+        <option data-display="">select an occasions</option>
+        <option value="birthday">Birthday</option>
+        <option value="anniversary">Anniversary</option>
+        <option value="date-night">Date night</option>
+        <option value="business-meal">Business meal</option>
+        <option value="celebration">Celebration</option>
+      </select>
+    </div>
+    <div class="form-group col-md-6">
+      <textarea class="form-control" rows="2"
+                placeholder="Add a special request"
+                title="Add a special request">
+      </textarea>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Reservation</button>
+</form>

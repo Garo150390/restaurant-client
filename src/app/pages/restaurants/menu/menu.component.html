@@ -1,0 +1,30 @@
+<section class="menu-area section-gap mb-5" id="menu">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="menu-content pb-70 col-lg-8">
+        <div class="title text-center">
+          <h1 class="mb-10">What kind of Foods we serve for you</h1>
+          <p>Who are in extremely love with eco friendly system.</p>
+        </div>
+      </div>
+    </div>
+
+    <ul class="filter-wrap filters col-lg-12 no-padding" #filters>
+      <li (click)="changeMenu('*')" data-filter="*" class="active">All Menu</li>
+      <li (click)="changeMenu('breakfast')" data-filter="breakfast" >Breakfast</li>
+      <li (click)="changeMenu('lunch')" data-filter="lunch" >Lunch</li>
+      <li (click)="changeMenu('dinner')" data-filter="dinner" >Dinner</li>
+      <li (click)="changeMenu('budget-meal')" data-filter="budget-meal" >Budget Meal</li>
+      <li (click)="changeMenu('buffet')" data-filter="buffet">Buffet</li>
+    </ul>
+
+    <div class="filters-content">
+      <div class="row grid show">
+        <div class="col-md-6" *ngFor="let product of productList">
+          <app-products [product]="product"></app-products>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

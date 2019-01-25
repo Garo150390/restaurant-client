@@ -1,0 +1,34 @@
+@import "../../../assets/scss/core/variables";
+@import "../../../../node_modules/bootstrap/scss/bootstrap";
+
+.about-banner {
+  background:url('../../../assets/images/top-banner.jpg') no-repeat bottom right/cover;
+  background-size:cover;
+  .overlay-bg{
+    background: rgba(#04091e,.40);
+  }
+}
+
+.about-content {
+  margin-top: 185px;
+  padding: 90px 0;
+  text-align: center;
+  h1 {
+    font-size: 36px;
+    font-weight: 600;
+  }
+  a {
+    color: $white;
+    font-weight: 300;
+    font-size: 14px;
+  }
+  .lnr {
+    margin: 0px 10px;
+    font-weight: 600;
+  }
+}
+
+.link-nav {
+  margin-top: 10px;
+  margin-bottom: 0;
+}

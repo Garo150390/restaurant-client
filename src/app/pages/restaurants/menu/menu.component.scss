@@ -1,0 +1,118 @@
+@import "~src/assets/scss/core/variables";
+
+.menu-area {
+  background: $offwhite;
+}
+
+
+.menu-area {
+  .primary-btn {
+    color: $white;
+    background-color: $primary-color;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.filter-wrap {
+  background: $white;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px 0 rgba(153, 153, 153, 0.2);
+}
+
+.menu-area .filters {
+  text-align: center;
+}
+
+.menu-area .filters {
+  padding: 0;
+  overflow: hidden;
+}
+
+.filter-wrap {
+  display: table;
+
+  li {
+    display: table-cell;
+    @media(max-width: 414px) {
+      display: block !important;
+    }
+    border-right: 1px solid #edf6ff;
+
+    &:last-child {
+      border: none;
+    }
+  }
+}
+
+
+.menu-area .filters li {
+  padding: 40px 0;
+  @media(max-width: 768px) {
+    padding: 20px 0;
+  }
+  @media(max-width: 767px) {
+    padding: 12px 0;
+    font-size: 15px;
+  }
+  max-width: 184px;
+  @media(max-width: 414px) {
+    max-width: 100% !important;
+  }
+  cursor: pointer;
+  position: relative;
+  color: $black;
+  font-size: 17px;
+  font-weight: 500;
+
+  &:last-child {
+    border-right: none;
+  }
+}
+
+
+.menu-area .filters li.active {
+  color: $white;
+  background: $primary-color;
+}
+
+.menu-area .filters-content {
+  margin-top: 50px;
+}
+
+.menu-area .filters-content .show {
+  opacity: 1;
+  visibility: visible;
+  transition: all 1ms;
+
+}
+
+.menu-area .filters-content .hide {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 1ms;
+}
+
+.menu-area .filters-content .item {
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+
+.menu-area .filters-content .item img {
+  border-radius: 10px;
+}
+
+.menu-area .filters-content .p-inner {
+  padding: 20px 0;
+  text-align: center;
+}
+
+
+.menu-area .filters-content .item .p-inner .cat {
+  font-size: 18px;
+}
+
+.menu-area .filters-content .item img {
+  width: 100%;
+}

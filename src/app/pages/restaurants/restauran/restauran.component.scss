@@ -1,0 +1,16 @@
+.home-about-left {
+  p {
+    margin: 20px 0;
+    max-width: 490px;
+  }
+
+  .primary-btn {
+    &:hover {
+      box-shadow: 0 20px 20px 0 rgba(245, 63, 81, 0.2);
+    }
+  }
+
+  @media(max-width: 991px) {
+    margin-bottom: 50px;
+  }
+}
