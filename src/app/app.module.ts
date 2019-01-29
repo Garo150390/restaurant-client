@@ -13,7 +13,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { RestaurantCardComponent } from './pages/home/restaurant-card/restaurant-card.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +29,7 @@ import { RestaurantCardComponent } from './pages/home/restaurant-card/restaurant
     CoreModule,
     SharedModule,
     AppRoutingModule,
-    BlogsModule
+    BlogsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

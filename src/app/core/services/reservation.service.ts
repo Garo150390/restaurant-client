@@ -10,7 +10,7 @@ export class ReservationService {
 
   constructor(private http: HttpClient) { }
 
-  public createUser(user): Observable<any> {
-    return this.http.post<any>(`${environment.apiEndPoint}users.json`, user);
+  public getTables(): Observable<any> {
+    return this.http.get<any>(`${environment.apiEndPoint}tables.json`, );
   }
 }

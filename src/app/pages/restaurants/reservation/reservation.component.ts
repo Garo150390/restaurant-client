@@ -9,6 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class ReservationComponent implements OnInit {
 
   public reservForm: FormGroup;
+  public time = {hour: 13, minute: 30};
 
   constructor() {
     this.reservForm = new FormGroup({
@@ -46,10 +47,10 @@ export class ReservationComponent implements OnInit {
   }
 
   submitReservForm() {
-    console.log(this.reservForm);
     if (this.reservForm.invalid) {
       this.validateAllFormFields(this.reservForm);
     } else {
+      console.log(this.reservForm.getRawValue());
     }
   }
 

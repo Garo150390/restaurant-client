@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgbModule, NgbTimepicker } from '@ng-bootstrap/ng-bootstrap';
 
+import { ReservationModalComponent } from './reservation/reservation-modal/reservation-modal.component';
 import { ReservationService } from '../../core/services/reservation.service';
 import { ReservationComponent } from './reservation/reservation.component';
 import { RestaurantsRoutingModule } from './restaurants-routing.module';
@@ -10,7 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuService } from '../../core/services/menu.service';
 import { SharedModule } from '../../shared/shared.module';
 import { MenuComponent } from './menu/menu.component';
-import { ReservationModalComponent } from './reservation/reservation-modal/reservation-modal.component';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { ReservationModalComponent } from './reservation/reservation-modal/reser
     RestaurantsRoutingModule,
     SharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule,
   ],
   providers: [
     MenuService,

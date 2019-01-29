@@ -25,36 +25,32 @@
               </select>
             </label>
           </div>
-          <div class="form-inline">
-            <div>
-              <label>
-                <input formControlName="date" type="date" class="mr-3" #date
-                (keyup)="alertValidate(date)">
-              </label>
-              <small *ngIf="(reservForm.controls['date'].dirty &&
-        reservForm.controls['date'].hasError('required')) ||
-         (reservForm.controls['date'].touched &&
-         reservForm.controls['date'].hasError('required'))">
+          <div class="form-group">
+            <div class="input-group">
+              <input class="form-control" placeholder="yyyy-mm-dd"
+                     name="date" ngbDatepicker #d="ngbDatepicker"
+                     aria-describedby="calendar"
+                     (keyup)="alertValidate(date)" #date>
+              <small *ngIf="(reservForm.controls['date'].dirty
+                  && reservForm.controls['date'].hasError('required'))
+                || (reservForm.controls['date'].touched
+                  && reservForm.controls['date'].hasError('required'))">
                 Date is required
               </small>
+              <div class="input-group-append">
+                <button class="btn icon-calendar"
+                        (click)="d.toggle()" type="button" id="calendar">
+                </button>
+              </div>
             </div>
-            <div>
-              <label>
-                <input formControlName="time" type="time" #time
-                       (keyup)="alertValidate(time)">
-              </label>
-              <small *ngIf="(reservForm.controls['time'].dirty &&
-        reservForm.controls['time'].hasError('required')) ||
-         (reservForm.controls['time'].touched &&
-         reservForm.controls['time'].hasError('required'))">
-                Time is required
-              </small>
-            </div>
+            <ngb-timepicker [(ngModel)]="time"
+                            [ngModelOptions]="{standalone: true}">
+            </ngb-timepicker>
           </div>
-          <button type="submit" class="btn btn-success">send</button>
           <button type="button" class="btn btn-danger mt-3"
                   data-toggle="modal" data-target="#reservation"
-          >MAKE RESERVATION</button>
+          >MAKE RESERVATION
+          </button>
         </form>
       </div>
     </div>

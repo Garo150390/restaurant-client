@@ -13,7 +13,7 @@ export class ReservationModalComponent implements OnInit {
 
   public reservationForms: FormGroup;
 
-  constructor(private reservationService: ReservationService) {
+  constructor() {
     this.reservationForms = new FormGroup({
       'name': new FormControl('', [
         Validators.required,
@@ -56,12 +56,7 @@ export class ReservationModalComponent implements OnInit {
     if (this.reservationForms.invalid) {
       this.validateAllFormFields(this.reservationForms);
     } else {
-      this.reservationService.createUser(this.reservationForms.getRawValue())
-        .subscribe((user) => {
-          console.log(user);
-        }, (err) => {
-          console.log(err);
-        });
+      console.log(this.reservationForms.getRawValue());
     }
   }
 
