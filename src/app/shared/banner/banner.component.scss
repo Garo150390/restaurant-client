@@ -7,6 +7,8 @@
   .overlay-bg{
     background: rgba(#04091e,.40);
   }
+
+  height: $banner_height;
 }
 
 .about-content {
@@ -23,7 +25,7 @@
     font-size: 14px;
   }
   .lnr {
-    margin: 0px 10px;
+    margin: 0 10px;
     font-weight: 600;
   }
 }

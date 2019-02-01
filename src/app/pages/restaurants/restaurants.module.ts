@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
+import { LightboxModule } from 'ngx-lightbox';
 import { CommonModule } from '@angular/common';
-import { NgbModule, NgbTimepicker } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ReservationModalComponent } from './reservation/reservation-modal/reservation-modal.component';
 import { ReservationService } from '../../core/services/reservation.service';
@@ -29,6 +30,7 @@ import { MenuComponent } from './menu/menu.component';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
+    LightboxModule
   ],
   providers: [
     MenuService,

@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
-import {Routes, RouterModule, PreloadAllModules} from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
-import {HomeComponent} from './pages/home/home.component';
-import {AboutComponent} from './pages/about/about.component';
-import {ContactComponent} from './pages/contact/contact.component';
-import {NotFoundComponent} from './pages/not-found/not-found.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { AboutComponent } from './pages/about/about.component';
+import { OrderComponent } from './pages/order/order.component';
+import { HomeComponent } from './pages/home/home.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent
+  },
+  {
+    path: 'order',
+    component: OrderComponent
   },
   {
     path: 'about',

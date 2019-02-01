@@ -111,6 +111,11 @@
   right: 0;
   transition: all 0.5s;
   z-index: 997;
+
+  .icon-basket {
+    color: white;
+    font-size: 25px;
+  }
 }
 
 #header.header-scrolled {
@@ -207,12 +212,12 @@
   outline: none;
 }
 
-.nav-menu li:hover > a{
-  color: $primary-color;
+.nav-menu li:hover > a, .icon-basket:hover, .active > a{
+  color: $primary-color !important;
 }
 
 .nav-menu > li {
-  margin-left: 10px;
+  margin-left: 10px !important;
 }
 
 .nav-menu ul {
@@ -372,3 +377,18 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 
+.icon-count:after{
+  position:absolute;
+  right:0;
+  top:-40%;
+  content: attr(data-count);
+  font-size: 16px;
+  padding:.6em;
+  border-radius:50%;
+  line-height:.8em;
+  color: white;
+  background:rgba(255,0,0,.85);
+  text-align:center;
+  min-width: 1em;
+  font-weight:bold;
+}

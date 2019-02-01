@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
 import { RestaurantsService } from './services/restaurants.service';
+import { StorageService } from './services/storage.service';
+import { OrderService } from './services/order.service';
 
 @NgModule({
   declarations: [],
@@ -11,7 +13,9 @@ import { RestaurantsService } from './services/restaurants.service';
     HttpClientModule
   ],
   providers: [
-    RestaurantsService
+    RestaurantsService,
+    StorageService,
+    OrderService
   ]
 })
 export class CoreModule { }

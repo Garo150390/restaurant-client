@@ -1,0 +1,40 @@
+<app-banner [name]="'order'"></app-banner>
+<div class="order_body col-6 m-auto">
+  <table *ngIf="products.length; else NotOrder" class="table table-borderless">
+    <thead>
+    <tr>
+      <th scope="col-2">image</th>
+      <th scope="col">Item name</th>
+      <th scope="col">Count</th>
+      <th scope="col">price</th>
+      <th scope="col">Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let prod of products; let i = index;">
+      <td><img src="assets/images/products/{{prod.img}}" alt="product image"></td>
+      <td>{{prod?.title}}</td>
+      <td>
+        <button class="btn btn-danger mx-2"
+                (click)="reduceCount(i)">-</button>
+        {{prod?.count}}
+        <button class="btn btn-success mx-2"
+        (click)="addCount(i)">+</button>
+      </td>
+      <td>{{prod.price}}</td>
+      <td>{{prod?.price * prod.count}}</td>
+      <td><i class="icon-trash-empty btn" (click)="deleteProduct(i)"></i></td>
+    </tr>
+    <tr>
+      <td colspan="4"></td>
+      <td>{{price}}</td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
+
+
+<ng-template class="empty_order" #NotOrder>
+  Order list is empty
+</ng-template>

@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiEndPoint: 'assets/json/'
+  apiEndPoint: 'assets/json/',
+  storageKey: 'restaurant-api: ',
 };
 
 /*

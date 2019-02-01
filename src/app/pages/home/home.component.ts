@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { RestaurantsService } from '../../core/services/restaurants.service';
-import { RestaurantsModel } from '../../core/models/restaurants.model';
+import { RestaurantsModel } from '../../core/models';
 
 @Component({
   selector: 'app-home',

@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  apiEndPoint: 'assets/json/'
+  apiEndPoint: 'assets/json/',
+  storageKey: 'restaurant-api: ',
 };

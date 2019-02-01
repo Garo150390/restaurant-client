@@ -10,21 +10,19 @@
     </div>
 
     <ul class="filter-wrap filters col-lg-12 no-padding" #filters>
-      <li (click)="changeMenu('*')" data-filter="*" class="active">All Menu</li>
-      <li (click)="changeMenu('breakfast')" data-filter="breakfast" >Breakfast</li>
-      <li (click)="changeMenu('lunch')" data-filter="lunch" >Lunch</li>
-      <li (click)="changeMenu('dinner')" data-filter="dinner" >Dinner</li>
-      <li (click)="changeMenu('budget-meal')" data-filter="budget-meal" >Budget Meal</li>
-      <li (click)="changeMenu('buffet')" data-filter="buffet">Buffet</li>
+      <li (click)="changeMenu($event.target)" data-filter="*" class="active">All Menu</li>
+      <li *ngFor="let item of menu" [attr.data-filter]="item"
+          (click)="changeMenu($event.target)">
+        {{item}}
+      </li>
     </ul>
 
     <div class="filters-content">
       <div class="row grid show">
-        <div class="col-md-6" *ngFor="let product of productList">
+        <div class="col-md-3 p-2" *ngFor="let product of productList">
           <app-products [product]="product"></app-products>
         </div>
       </div>
     </div>
-
   </div>
 </section>

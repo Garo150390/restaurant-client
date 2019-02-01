@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 
 import {MenuService} from '../../../core/services/menu.service';
-import {ProductsModel} from '../../../core/models/products.model';
+import {ProductsModel} from '../../../core/models';
 
 @Component({
   selector: 'app-menu',
@@ -12,6 +12,7 @@ export class MenuComponent implements OnInit, AfterViewInit {
 
   private products: Array<ProductsModel>;
   public productList: Array<ProductsModel>;
+  public menu = ['breakfast', 'lunch', 'dinner', 'budget-meal', 'buffet'];
 
   @ViewChild('filters')
   private filters;
@@ -35,22 +36,16 @@ export class MenuComponent implements OnInit, AfterViewInit {
     this.childrens = this.filters.nativeElement.children;
   }
 
-  public changeMenu(value) {
-    console.log(this.childrens);
-    let el;
+  public changeMenu(elem) {
     for (let i = 0; i < this.childrens.length; i += 1) {
-      const name = this.childrens[i].dataset.filter;
       this.childrens[i].classList.remove('active');
-      if (name === value) {
-        el = this.childrens[i];
-      }
     }
-    el.classList.add('active');
-    if (value === '*') {
+    elem.classList.add('active');
+    if (elem.dataset.filter === '*') {
       return this.productList = this.products;
     }
     this.productList = this.products.filter((product) => {
-      return product.category === value;
+      return product.category === elem.dataset.filter;
     });
   }
 
