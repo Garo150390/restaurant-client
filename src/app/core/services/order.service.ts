@@ -1,10 +1,9 @@
+import 'rxjs/add/observable/from';
 import { ReplaySubject} from 'rxjs';
 import { DoCheck, Injectable} from '@angular/core';
 
-import 'rxjs/add/observable/from';
-
-import { OrderProductsModel } from '../models';
 import { StorageService } from './storage.service';
+import { OrderProductsModel } from '../models';
 
 @Injectable()
 export class OrderService implements DoCheck {

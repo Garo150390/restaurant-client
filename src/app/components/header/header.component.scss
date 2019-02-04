@@ -115,6 +115,7 @@
   .icon-basket {
     color: white;
     font-size: 25px;
+    position: relative;
   }
 }
 
@@ -362,20 +363,6 @@
   background: rgba(0, 0, 0, 0.7);
   display: none;
 }
-
-/* Mobile Nav body classes */
-body.mobile-nav-active {
-  overflow: hidden;
-}
-
-body.mobile-nav-active #mobile-nav {
-  left: 0;
-}
-
-body.mobile-nav-active #mobile-nav-toggle {
-  color: #fff;
-}
-
 
 .icon-count:after{
   position:absolute;

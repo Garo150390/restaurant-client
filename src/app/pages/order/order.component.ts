@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { StorageService } from '../../core/services/storage.service';
 import { OrderService } from '../../core/services/order.service';

@@ -2,6 +2,19 @@
 @import "~src/assets/scss/core/variables";
 @import "~src/assets/scss/core/_elements.scss";
 
+/* Mobile Nav body classes */
+body.mobile-nav-active {
+  overflow: hidden;
+}
+
+body.mobile-nav-active #mobile-nav {
+  left: 0;
+}
+
+body.mobile-nav-active #mobile-nav-toggle {
+  color: #fff;
+}
+
 a, .pointer {
   cursor: pointer;
 }
