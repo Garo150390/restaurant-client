@@ -4,6 +4,7 @@ import { DoCheck, Injectable} from '@angular/core';
 import 'rxjs/add/observable/from';
 
 import { OrderProductsModel } from '../models';
+import { StorageService } from './storage.service';
 
 @Injectable()
 export class OrderService implements DoCheck {
@@ -14,6 +15,9 @@ export class OrderService implements DoCheck {
   public ordersCount = this.ordersSubject.asObservable();
 
   constructor() {
+    if (StorageService.getData('orders')) {
+      this.orders = JSON.parse(StorageService.getData('orders'));
+    }
   }
 
   public addToOrders(product: OrderProductsModel) {
@@ -26,6 +30,8 @@ export class OrderService implements DoCheck {
     if (!exist) {
       this.orders.push(product);
       this.ordersSubject.next(this.orders.length);
+      StorageService.saveItem('orders', JSON.stringify(this.orders));
+      JSON.parse(StorageService.getData(product.id));
     }
   }
 

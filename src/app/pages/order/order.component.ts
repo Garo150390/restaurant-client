@@ -1,7 +1,9 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
+import { StorageService } from '../../core/services/storage.service';
 import { OrderService } from '../../core/services/order.service';
 import { OrderProductsModel } from '../../core/models';
+import {logger} from 'codelyzer/util/logger';
 
 @Component({
   selector: 'app-order',
@@ -13,8 +15,7 @@ export class OrderComponent implements OnInit {
   public products: Array<OrderProductsModel> = [];
   public price: number;
 
-  constructor(private orderService: OrderService,
-              private cd: ChangeDetectorRef) {
+  constructor(private orderService: OrderService) {
   }
 
   private totalePrice() {
@@ -28,31 +29,44 @@ export class OrderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.products = this.orderService.orders;
+    if (StorageService.getData('orders')) {
+      this.products = JSON.parse(StorageService.getData('orders'));
+    } else {
+      this.products = this.orderService.orders;
+    }
     if (this.products.length) {
       this.totalePrice();
     }
   }
 
   public addCount(index) {
-      this.products[index].count += 1;
-      this.price += this.products[index].price;
-      this.orderService.changeDetect();
+    this.products[index].count += 1;
+    this.price += this.products[index].price;
+    this.orderService.changeDetect();
+    StorageService.clearItem('orders');
+    StorageService.saveItem('orders', JSON.stringify(this.products));
   }
 
   public reduceCount(index) {
     if (this.products[index].count > 1) {
       this.products[index].count -= 1;
       this.price -= this.products[index].price;
+      StorageService.clearItem('orders');
+      StorageService.saveItem('orders', JSON.stringify(this.products));
     }
   }
 
   public deleteProduct(index) {
     this.products.splice(index, 1);
+    StorageService.clearItem('orders');
+    StorageService.saveItem('orders', JSON.stringify(this.products));
     if (this.products.length) {
       this.totalePrice();
     }
     this.orderService.changeDetect();
   }
 
+  public sendData() {
+    console.log(this.products);
+  }
 }

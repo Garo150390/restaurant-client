@@ -1,9 +1,9 @@
-import {Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import {ProductsModel} from '../models';
-import {environment} from '../../../environments/environment.prod';
+import { ProductsModel } from '../models';
+import { environment } from '../../../environments/environment.prod';
 
 @Injectable()
 export class MenuService {

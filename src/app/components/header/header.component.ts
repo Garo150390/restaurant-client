@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 
 import {OrderService} from '../../core/services/order.service';
+import {StorageService} from '../../core/services/storage.service';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,11 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   private items: HTMLCollection;
   public count: number;
 
-  constructor(private orderService: OrderService) { }
+  constructor(private orderService: OrderService) {
+    if (StorageService.getData('orders')) {
+      this.count = JSON.parse(StorageService.getData('orders')).length;
+    }
+  }
 
   ngOnInit() {
     this.orderService.ordersCount
