@@ -40,6 +40,7 @@ export class OrderService implements DoCheck {
   }
 
   public changeDetect() {
+    console.log(this.orders);
     if (!this.orders.length) {
       return this.ordersSubject.next(0);
     }

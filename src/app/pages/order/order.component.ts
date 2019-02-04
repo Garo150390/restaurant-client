@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 import { StorageService } from '../../core/services/storage.service';
 import { OrderService } from '../../core/services/order.service';
 import { OrderProductsModel } from '../../core/models';
-import {logger} from 'codelyzer/util/logger';
 
 @Component({
   selector: 'app-order',
@@ -25,15 +24,15 @@ export class OrderComponent implements OnInit {
     this.price = price.reduce((x, y) => {
       return x + y;
     });
-    console.log(this.price);
   }
 
   ngOnInit() {
     if (StorageService.getData('orders')) {
-      this.products = JSON.parse(StorageService.getData('orders'));
-    } else {
-      this.products = this.orderService.orders;
+      this.orderService.orders = JSON.parse(StorageService.getData('orders'));
     }
+
+    this.products = this.orderService.orders;
+
     if (this.products.length) {
       this.totalePrice();
     }
@@ -42,7 +41,6 @@ export class OrderComponent implements OnInit {
   public addCount(index) {
     this.products[index].count += 1;
     this.price += this.products[index].price;
-    this.orderService.changeDetect();
     StorageService.clearItem('orders');
     StorageService.saveItem('orders', JSON.stringify(this.products));
   }
