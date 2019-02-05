@@ -3,4 +3,6 @@ export class ValidatorHelper {
 
   static readonly nameRegEx = /^[A-Za-z\-' ']+$/;
 
+  static readonly phoneRegex = /((\(\d{3}\) ?)|(\d{2}-))?\d{3}-\d{2}-\d{2}-\d{2}$/;
+
 }

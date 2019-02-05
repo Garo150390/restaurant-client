@@ -21,8 +21,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     if (StorageService.getData('orders')) {
       this.count = JSON.parse(StorageService.getData('orders')).length;
     }
+    const lang = StorageService.getData('lang') ? StorageService.getData('lang') : 'en';
     translate.setDefaultLang('en');
-    translate.use('en');
+    translate.use(lang);
   }
 
   ngOnInit() {
@@ -45,6 +46,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   public switchLang(lang) {
     this.translate.use(lang);
+    StorageService.saveItem('lang', lang);
   }
 
 }

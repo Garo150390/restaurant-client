@@ -56,6 +56,13 @@ a, .pointer {
   }
 }
 
+small {
+  color: red
+}
+
+.bg-danger {
+  background-color: #ff8403;
+}
 
 .primary-btn {
   background: $primary-color;

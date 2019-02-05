@@ -10,12 +10,67 @@
       <div>
         <form [formGroup]="orderForms"
               (ngSubmit)="sendOrderForms()">
-          <div class="form-row">
-            <div class="col">
-              <input formControlName="name" type="text" class="form-control" placeholder="First name">
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col">
+                <input formControlName="name" type="text"
+                       class="form-control" placeholder="Name" name="name"
+                       (keyup)="alertValidate(name)" #name>
+                <small *ngIf="(orderForms.controls['name'].dirty &&
+        orderForms.controls['name'].hasError('required')) ||
+         (orderForms.controls['name'].touched &&
+         orderForms.controls['name'].hasError('required'))">
+                  Name is required
+                </small>
+                <small *ngIf="orderForms.controls['name'].dirty
+           && orderForms.controls['name'].hasError('pattern')">
+                  Invalid name
+                </small>
+              </div>
+              <div class="col">
+                <input formControlName="phone" type="text" class="form-control" placeholder="Phone Number" name="phone"
+                       (keyup)="alertValidate(phone)" #phone>
+                <small *ngIf="(orderForms.controls['phone'].dirty &&
+        orderForms.controls['phone'].hasError('required')) ||
+         (orderForms.controls['phone'].touched &&
+         orderForms.controls['phone'].hasError('required'))">
+                  Phone is required
+                </small>
+                <small *ngIf="orderForms.controls['phone'].dirty
+           && orderForms.controls['phone'].hasError('pattern')">
+                  Invalid phone
+                </small>
+              </div>
             </div>
-            <div class="col">
-              <input formControlName="phone" type="text" class="form-control" placeholder="Phone Number">
+          </div>
+          <div class="form-group">
+            <div class="mb-3">
+              <input formControlName="address" type="text" class="form-control" placeholder="Address">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-check">
+              <input #payment class="form-check-input" (click)="checked(payment.checked)"
+                     type="checkbox" id="gridCheck">
+              <label class="form-check-label" for="gridCheck">
+                Card payment
+              </label>
+              <div *ngIf="pay">
+                <ul class="nav mt-3 align-baseline">
+                  <li class="mx-3">
+                    <div><img src="assets/images/elements/ameria.webp" height="52" alt=""></div>
+                    <span>Credit Card</span>
+                  </li>
+                  <li>
+                    <div><img src="assets/images/elements/mobidram.webp" height="52" alt=""></div>
+                    <span>Mobidram</span>
+                  </li>
+                  <li class="mx-3">
+                    <div><img src="assets/images/elements/idram.webp" height="52" alt=""></div>
+                    <span>iDram</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
           <div class="modal-footer">

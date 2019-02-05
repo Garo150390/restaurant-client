@@ -8,6 +8,7 @@ import { ReservationService } from '../../core/services/reservation.service';
 import { ReservationComponent } from './reservation/reservation.component';
 import { RestaurantsRoutingModule } from './restaurants-routing.module';
 import { ProductsComponent } from './menu/products/products.component';
+import { ValidateService } from '../../core/services/validate.service';
 import { RestauranComponent } from './restauran/restauran.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuService } from '../../core/services/menu.service';
@@ -34,7 +35,8 @@ import { MenuComponent } from './menu/menu.component';
   ],
   providers: [
     MenuService,
-    ReservationService
+    ReservationService,
+    ValidateService
   ]
 })
 export class RestaurantsModule { }

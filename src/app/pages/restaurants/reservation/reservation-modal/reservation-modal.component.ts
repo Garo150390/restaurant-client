@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import {ValidatorHelper} from '../../../../core/helpers/validator.helper';
+import { ValidatorHelper } from '../../../../core/helpers/validator.helper';
+import { ValidateService } from '../../../../core/services/validate.service';
 
 @Component({
   selector: 'app-reservation-modal',
@@ -18,6 +19,7 @@ export class ReservationModalComponent implements OnInit {
         Validators.required,
         Validators.pattern(ValidatorHelper.nameRegEx)
       ]),
+      'surname': new FormControl('', []),
       'email': new FormControl('', [
         Validators.required,
         Validators.pattern(ValidatorHelper.emailRegEx),
@@ -31,29 +33,13 @@ export class ReservationModalComponent implements OnInit {
   ngOnInit() {
   }
 
-  public validateAllFormFields(formGroup: FormGroup): void {
-    Object.keys(formGroup.controls).forEach(field => {
-      const control = formGroup.get(field);
-
-      if (control instanceof FormControl) {
-        control.markAsTouched({onlySelf: true});
-      } else if (control instanceof FormGroup) {
-        this.validateAllFormFields(control);
-      }
-    });
-  }
-
   public alertValidate(event) {
-    if (this.reservationForms.controls[event.name].status === 'INVALID') {
-      event.classList.add('bg-danger');
-    } else {
-      event.classList.remove('bg-danger');
-    }
+    ValidateService.alertValidate(event, this.reservationForms);
   }
 
-  submitReservationForm() {
+  public submitReservationForm() {
     if (this.reservationForms.invalid) {
-      this.validateAllFormFields(this.reservationForms);
+      ValidateService.validateAllFormFields(this.reservationForms);
     } else {
       console.log(this.reservationForms.getRawValue());
     }

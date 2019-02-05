@@ -19,13 +19,13 @@
     </div>
     <div class="form-group col-md-6">
       <label for="surname">SurName</label>
-      <input type="text" class="form-control" id="surname" placeholder="Surname">
+      <input formControlName="surname" type="text" class="form-control" id="surname" placeholder="Surname">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="phone">Phone number</label>
-      <input formControlName="phone" type="text"
+      <input formControlName="phone" type="text" name="name"
              (keyup)="alertValidate(phone)" #phone
              class="form-control" id="phone" placeholder="Phone number">
       <small *ngIf="(reservationForms.controls['phone'].dirty &&
@@ -37,7 +37,7 @@
     </div>
     <div class="form-group col-md-6">
       <label for="email">Email</label>
-      <input formControlName="email" type="email"
+      <input formControlName="email" type="email" name="email"
              (keyup)="alertValidate(email)" #email
              class="form-control" id="email" placeholder="Email">
       <small *ngIf="(reservationForms.controls['email'].dirty &&
