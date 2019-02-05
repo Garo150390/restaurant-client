@@ -1,16 +1,5 @@
 @import "../../../assets/scss/core/variables";
 
-.table {
-  tr {
-    td {
-      img {
-        width: 100px;
-        height: 100px;
-      }
-    }
-  }
-}
-
 .order_body {
   min-height: 100vh - ($footer_height + $banner_height);
 }

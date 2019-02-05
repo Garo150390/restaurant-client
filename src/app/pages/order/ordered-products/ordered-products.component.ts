@@ -20,11 +20,11 @@ export class OrderedProductsComponent implements OnInit {
 
   ngOnInit() {
     if (this.products.length) {
-      this.totalPrice();
+      this.totalePrice();
     }
   }
 
-  private totalPrice() {
+  private totalePrice() {
     const price = this.products.map((x) => {
       return x.price * x.count;
     });
@@ -54,7 +54,7 @@ export class OrderedProductsComponent implements OnInit {
     StorageService.clearItem('orders');
     StorageService.saveItem('orders', JSON.stringify(this.products));
     if (this.products.length) {
-      this.totalPrice();
+      this.totalePrice();
     }
     this.orderService.changeDetect();
   }

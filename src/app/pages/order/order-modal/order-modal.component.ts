@@ -31,8 +31,4 @@ export class OrderModalComponent implements OnInit {
     console.log(this.orderForms.getRawValue());
   }
 
-  public foo(el) {
-    console.log(el);
-  }
-
 }
