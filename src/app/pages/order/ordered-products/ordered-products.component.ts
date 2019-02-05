@@ -58,4 +58,8 @@ export class OrderedProductsComponent implements OnInit {
     }
     this.orderService.changeDetect();
   }
+
+  public sendData() {
+    console.log(this.products);
+  }
 }

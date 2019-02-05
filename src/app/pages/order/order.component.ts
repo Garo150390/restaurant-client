@@ -24,7 +24,4 @@ export class OrderComponent implements OnInit {
     this.products = this.orderService.orders;
   }
 
-  public sendData() {
-    console.log(this.products);
-  }
 }

@@ -5,18 +5,30 @@
             aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="d-flex justify-content-end col-12">
-      <div class="collapse navbar-collapse col-8 justify-content-between" id="navbarNav">
-        <ul class="nav-menu" #navItems>
-          <li class="nav-item" (click)="changeMenu($event.path[1])"><a class="nav-link" routerLink="home">Home</a></li>
-          <li class="nav-item" (click)="changeMenu($event.path[1])"><a class="nav-link" routerLink="about">About</a></li>
-          <li class="nav-item" (click)="changeMenu($event.path[1])"><a class="nav-link" routerLink="blog">Blog</a></li>
-          <li class="nav-item" (click)="changeMenu($event.path[1])"><a class="nav-link" routerLink="contact">Contact</a></li>
+    <div class="d-flex justify-content-md-center justify-content-lg-end col-12">
+      <div class="collapse navbar-collapse col-md-11 col-lg-8 justify-content-lg-between"
+           id="navbarNav">
+        <ul class="nav-menu col-12 col-md mb-5 mb-md-0" #navItems>
+          <li class="nav-item" (click)="changeMenu($event.path[1])"><a class="nav-link" routerLink="home">{{ 'header.home' | translate }}</a></li>
+          <li class="nav-item" (click)="changeMenu($event.path[1])"><a class="nav-link" routerLink="about">{{'header.about' | translate }}</a>
+          </li>
+          <li class="nav-item" (click)="changeMenu($event.path[1])"><a class="nav-link" routerLink="blog">{{'header.blog' | translate }}</a></li>
+          <li class="nav-item" (click)="changeMenu($event.path[1])"><a class="nav-link" routerLink="contact">{{'header.contact' | translate }}</a>
+          </li>
         </ul>
-        <div id="ex3">
-          <i class="icon-basket pointer"
-             routerLink="/order"></i>
-          <i *ngIf="count" class="icon-count" [attr.data-count]="count"></i>
+        <div class="row justify-content-md-end col-12 col-md-5">
+          <div>
+            <ul class="nav text-white-50">
+              <li class="nav-item" (click)="switchLang('am')"><a class="nav-link px-1">Հայ</a></li>
+              <li class="nav-item" (click)="switchLang('ru')"><a class="nav-link px-1">Рус</a></li>
+              <li class="nav-item" (click)="switchLang('en')"><a class="nav-link pl-1">Eng</a></li>
+            </ul>
+          </div>
+          <div class="relative">
+            <i class="icon-basket pointer pr-3"
+               routerLink="/order"></i>
+            <i *ngIf="count" class="icon-count" [attr.data-count]="count"></i>
+          </div>
         </div>
       </div>
     </div>
