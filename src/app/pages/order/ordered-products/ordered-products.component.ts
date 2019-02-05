@@ -1,41 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
-import { StorageService } from '../../core/services/storage.service';
-import { OrderService } from '../../core/services/order.service';
-import { OrderProductsModel } from '../../core/models';
+import { OrderProductsModel } from '../../../core/models';
+import { StorageService } from '../../../core/services/storage.service';
+import { OrderService } from '../../../core/services/order.service';
 
 @Component({
-  selector: 'app-order',
-  templateUrl: './order.component.html',
-  styleUrls: ['./order.component.scss']
+  selector: 'app-ordered-products',
+  templateUrl: './ordered-products.component.html',
+  styleUrls: ['./ordered-products.component.scss']
 })
-export class OrderComponent implements OnInit {
+export class OrderedProductsComponent implements OnInit {
 
-  public products: Array<OrderProductsModel> = [];
+  @Input()
+  public products: Array<OrderProductsModel>;
+
   public price: number;
 
-  constructor(private orderService: OrderService) {
+  constructor(private orderService: OrderService) { }
+
+  ngOnInit() {
+    if (this.products.length) {
+      this.totalPrice();
+    }
   }
 
-  private totalePrice() {
+  private totalPrice() {
     const price = this.products.map((x) => {
       return x.price * x.count;
     });
     this.price = price.reduce((x, y) => {
       return x + y;
     });
-  }
-
-  ngOnInit() {
-    if (StorageService.getData('orders')) {
-      this.orderService.orders = JSON.parse(StorageService.getData('orders'));
-    }
-
-    this.products = this.orderService.orders;
-
-    if (this.products.length) {
-      this.totalePrice();
-    }
   }
 
   public addCount(index) {
@@ -59,8 +54,12 @@ export class OrderComponent implements OnInit {
     StorageService.clearItem('orders');
     StorageService.saveItem('orders', JSON.stringify(this.products));
     if (this.products.length) {
-      this.totalePrice();
+      this.totalPrice();
     }
     this.orderService.changeDetect();
+  }
+
+  public sendData() {
+    console.log(this.products);
   }
 }
