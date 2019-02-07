@@ -1,0 +1,13 @@
+<app-banner [name]="'Gallery'"></app-banner>
+
+<div class="container">
+  <div class="row">
+    <div class="col-3 my-3" *ngFor="let item of photos; let i = index">
+      <img [lightbox]="i"
+           [gallery]="galleryId"
+           [src]="item.data.thumb" width="250px">
+    </div>
+  </div>
+</div>
+
+<div id="content-container"></div>

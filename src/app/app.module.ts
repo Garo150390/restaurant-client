@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { GalleryModule } from '@ngx-gallery/core';
+import { LightboxModule } from '@ngx-gallery/lightbox';
+import { GallerizeModule } from '@ngx-gallery/gallerize';
 import { BrowserModule } from '@angular/platform-browser';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { RestaurantCardComponent } from './pages/home/restaurant-card/restaurant-card.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
@@ -35,9 +39,10 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
     CoreModule,
     SharedModule,
-    AppRoutingModule,
     BlogsModule,
     OrderModule,
     TranslateModule.forRoot({
@@ -47,8 +52,13 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
+    GalleryModule.withConfig({
+      loadingMode: 'indeterminate',
+    }),
+    LightboxModule,
+    GallerizeModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -40,6 +40,10 @@ const routes: Routes = [
     loadChildren: './pages/restaurants/restaurants.module#RestaurantsModule'
   },
   {
+    path: 'gallery',
+    loadChildren: './pages/photo-gallery/photo-gallery.module#PhotoGalleryModule'
+  },
+  {
     path: 'blog',
     loadChildren: './pages/blogs/blogs.module#BlogsModule'
   },

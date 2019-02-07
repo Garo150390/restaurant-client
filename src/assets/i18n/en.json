@@ -3,6 +3,10 @@
     "home": "Home",
     "about": "About",
     "contact": "Contact",
-    "blog": "Blog"
+    "blog": "Blog",
+    "gallery": "Gallery"
+  },
+  "home": {
+    "title": "Restaurants"
   }
 }
