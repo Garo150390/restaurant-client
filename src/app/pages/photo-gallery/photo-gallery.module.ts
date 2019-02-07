@@ -2,15 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GalleryModule } from '@ngx-gallery/core';
 import { LightboxModule } from '@ngx-gallery/lightbox';
+import { OverlayContainer } from '@angular/cdk/overlay';
 import { GallerizeModule } from '@ngx-gallery/gallerize';
 
 import { PhotoGalleryComponent } from './photo-gallery/photo-gallery.component';
 import { PhotoGalleryRoutingModule } from './photo-gallery-routing.module';
 import { GalleryService } from '../../core/services/gallery.service';
+import { AppOverlayContainer } from './custom-overlay-container';
 import { SharedModule } from '../../shared/shared.module';
 import { PhotoComponent } from './photo/photo.component';
-import {OverlayContainer} from '@angular/cdk/overlay';
-import {AppOverlayContainer} from './custom-overlay-container';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,7 @@ import {AppOverlayContainer} from './custom-overlay-container';
       loadingMode: 'determinate',
     }),
     LightboxModule.withConfig({
-      // panelClass: 'fullscreen',
+      panelClass: 'fullscreen',
     }),
     GallerizeModule
   ],
