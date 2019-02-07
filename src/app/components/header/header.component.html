@@ -6,9 +6,10 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="d-flex justify-content-md-center justify-content-lg-end col-12">
-      <div class="collapse navbar-collapse col-md-11 col-lg-8 justify-content-lg-between"
+      <div class="collapse navbar-collapse offset-0 offset-lg-3 justify-content-end"
            id="navbarNav">
-        <ul class="nav-menu col-12 col-md mb-5 mb-md-0" #navItems>
+        <div class="row col-12 col-sm-10 mb-5 mb-lg-0 justify-content-center">
+          <ul class="nav-menu" #navItems>
           <li class="nav-item" (click)="changeMenu($event.path[1])"><a class="nav-link" routerLink="home">{{ 'header.home' | translate }}</a></li>
           <li class="nav-item" (click)="changeMenu($event.path[1])"><a class="nav-link" routerLink="about">{{'header.about' | translate }}</a>
           </li>
@@ -18,7 +19,8 @@
           <li class="nav-item" (click)="changeMenu($event.path[1])"><a class="nav-link" routerLink="gallery">{{'header.gallery' | translate }}</a>
           </li>
         </ul>
-        <div class="row justify-content-md-end col-12 col-md-5">
+        </div>
+        <div class="row justify-content-lg-end col-12 offset-2 offset-lg-0 col-lg-4">
           <div>
             <ul class="nav text-white-50">
               <li class="nav-item" (click)="switchLang('am')"><a class="nav-link px-1">Հայ</a></li>
