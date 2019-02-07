@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { AuthGuardService } from './core/services/auth-guard.service';
 import { ContactComponent } from './pages/contact/contact.component';
 import { AboutComponent } from './pages/about/about.component';
 import { OrderComponent } from './pages/order/order.component';
@@ -16,7 +17,12 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
+    // canActivate: [AuthGuardService]
+  },
+  {
+    path: 'auth',
+    loadChildren: './auth/auth.module#AuthModule'
   },
   {
     path: 'order',

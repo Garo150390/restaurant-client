@@ -1,0 +1,51 @@
+.loginForm {
+  //margin-right: 16rem;
+
+  label {
+    font: 25px 'Fredoka One', cursive
+  }
+
+  .loginBtn, .registerBtn {
+    font: 20px robotoregular;
+  }
+
+  input {
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0) !important;
+    border: none;
+    box-shadow: none;
+    border-bottom: 1px solid white;
+    color: white;
+
+    &::placeholder {
+      color: white;
+    }
+
+    &:active {
+      cursor: text;
+    }
+
+    &.borderBottom {
+      border-bottom: 1px solid crimson;
+    }
+  }
+
+  [class^="icon-"] {
+    font-size: 25px;
+    color: white;
+    z-index: 1;
+  }
+
+  small {
+    padding-top: 0.5rem;
+    display: inline-block;
+  }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: white !important;
+}

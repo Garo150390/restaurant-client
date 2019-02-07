@@ -11,6 +11,6 @@ export class ReservationService {
   constructor(private http: HttpClient) { }
 
   public getTables(): Observable<any> {
-    return this.http.get<any>(`${environment.apiEndPoint}tables.json`, );
+    return this.http.get<any>(`${environment.localEndPoint}tables.json`, );
   }
 }

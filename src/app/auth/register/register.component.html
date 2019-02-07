@@ -1,0 +1,178 @@
+<form [formGroup]="registerForm"
+          (ngSubmit)="submitRegisterForm()"
+          class="p-5 registerForm text-white position-relative">
+      <div class="form-group">
+        <div class="d-flex">
+          <i class="icon-user-o pt-1 pr-1"></i>
+          <input formControlName="name" type="text" #name
+                 class="col-10 form-control form-control-lg position-absolute pl-5"
+                 placeholder="Name" name="name"
+                 (keyup)="alertValidate(name)">
+        </div>
+
+        <small *ngIf="(registerForm.controls['name'].dirty &&
+        registerForm.controls['name'].hasError('required')) ||
+         (registerForm.controls['name'].touched &&
+         registerForm.controls['name'].hasError('required'))">
+          Name is required
+        </small>
+
+      </div>
+      <div class="form-group">
+        <div class="d-flex">
+          <i class="icon-user-o pt-1 pr-1"></i>
+          <input formControlName="surname" type="text" #surname
+                 class="col-10 form-control form-control-lg position-absolute pl-5"
+                 placeholder="Surname" name="surname"
+                 (keyup)="alertValidate(surname)">
+        </div>
+
+        <small *ngIf="(registerForm.controls['surname'].dirty &&
+        registerForm.controls['surname'].hasError('required')) ||
+         (registerForm.controls['surname'].touched &&
+         registerForm.controls['surname'].hasError('required'))">
+          Surname is required
+        </small>
+
+      </div>
+      <div class="form-group">
+        <div class="d-flex">
+          <i class="icon-user-o pt-1 pr-1"></i>
+          <input formControlName="age" type="number" #age
+                 class="col-10 form-control form-control-lg position-absolute pl-5"
+                 placeholder="Age" name="age"
+                 (keyup)="alertValidate(age)">
+        </div>
+
+        <small *ngIf="(registerForm.controls['age'].dirty &&
+        registerForm.controls['age'].hasError('required')) ||
+         (registerForm.controls['age'].touched &&
+         registerForm.controls['age'].hasError('required'))">
+          Age is required
+        </small>
+
+      </div>
+      <div class="form-group">
+        <div class="d-flex">
+          <i class="icon-mail pt-1 pr-1"></i>
+          <input formControlName="email" type="email" #email
+                 class="col-10 form-control form-control-lg position-absolute pl-5"
+                 placeholder="Email" name="email"
+                 (keyup)="alertValidate(email)">
+        </div>
+
+        <small *ngIf="(registerForm.controls['email'].dirty &&
+        registerForm.controls['email'].hasError('required')) ||
+         (registerForm.controls['email'].touched &&
+         registerForm.controls['email'].hasError('required'))">
+          Email is required
+        </small>
+        <small class="text-danger"
+               *ngIf="registerForm.controls['email'].hasError('incorrect')">
+          user is registered, please enter other email
+        </small>
+
+      </div>
+      <div class="form-group">
+        <div class="d-flex">
+          <i class="icon-lock pt-1 pr-1"></i>
+          <input formControlName="password" type="password" #password
+                 class="col-10 form-control form-control-lg position-absolute pl-5"
+                 placeholder="Password" name="password"
+                 (keyup)="alertValidate(password)">
+        </div>
+
+        <small *ngIf="(registerForm.controls['password'].dirty &&
+        registerForm.controls['password'].hasError('required')) ||
+         (registerForm.controls['password'].touched &&
+         registerForm.controls['password'].hasError('required'))">
+          Password is required
+        </small>
+
+        <small *ngIf="registerForm.controls['password'].dirty &&
+          registerForm.controls['password'].hasError('minlength')">
+          Your password should be longer then {{ config.password.MINLENGTH}} characters
+        </small>
+        <small *ngIf="registerForm.controls['password'].dirty &&
+          registerForm.controls['password'].hasError('maxlength')">
+          Your password should be shorter then {{ config.password.MINLENGTH}} characters
+        </small>
+
+      </div>
+      <div class="form-group">
+        <div class="d-flex">
+          <i class="icon-lock pt-1 pr-1"></i>
+          <input formControlName="confirmPassword" type="password" #confirmPassword
+                 class="col-10 form-control form-control-lg position-absolute pl-5"
+                 placeholder="ConfirmPassword" name="confirmPassword"
+                 (keyup)="alertValidate(confirmPassword)">
+        </div>
+
+        <small *ngIf="(registerForm.controls['confirmPassword'].dirty &&
+        registerForm.controls['confirmPassword'].hasError('required')) ||
+         (registerForm.controls['confirmPassword'].touched &&
+         registerForm.controls['confirmPassword'].hasError('required'))">
+          ConfirmPassword is required
+        </small>
+
+        <small *ngIf="registerForm.controls['confirmPassword'].dirty &&
+          registerForm.hasError('confirmPassword')">
+          Passwords Don't Match
+        </small>
+
+      </div>
+      <div class="form-group">
+        <div class="custom-file">
+          <i class="icon-picture-outline pt-1 pr-1"></i>
+          <input type="file" class="file custom-file-input pl-5 position-absolute col-10"
+                 formControlName="image"
+                 id="file" #image name="image"
+                 (keyup)="alertValidate(image)">
+
+        </div>
+
+        <small *ngIf="(registerForm.controls['image'].dirty &&
+        registerForm.controls['image'].hasError('required')) ||
+         (registerForm.controls['image'].touched &&
+         registerForm.controls['image'].hasError('required'))">
+          Image is required
+        </small>
+
+      </div>
+      <div class="form-group mb-4">
+        <div class="row">
+          <div class="col mr-3">
+            <div>
+              <input formControlName="country" type="text" #country
+                     class="form-control form-control-lg position-absolute pl-5 mr-3"
+                     placeholder="Country" name="country"
+                     (keyup)="alertValidate(country)">
+              <i class="icon-home-outline pt-1 pr-1"></i>
+            </div>
+            <small *ngIf="(registerForm.controls['country'].dirty &&
+        registerForm.controls['country'].hasError('required')) ||
+         (registerForm.controls['country'].touched &&
+         registerForm.controls['country'].hasError('required'))">
+              Country is required
+            </small>
+          </div>
+          <div class="col">
+            <input formControlName="city" type="text" #city
+                   class="form-control form-control-lg"
+                   placeholder="City" name="city"
+                   (keyup)="alertValidate(city)">
+            <small *ngIf="(registerForm.controls['city'].dirty &&
+        registerForm.controls['city'].hasError('required')) ||
+         (registerForm.controls['city'].touched &&
+         registerForm.controls['city'].hasError('required'))"
+            class="pt-0">
+              City is required
+            </small>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-around ">
+        <button type="submit" class="btn btn-success registerBtn">Register</button>
+        <button routerLink="/auth" type="submit" class="btn btn-info loginBtn">Login</button>
+      </div>
+    </form>

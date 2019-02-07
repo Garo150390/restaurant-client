@@ -12,7 +12,7 @@ export class RestaurantsService {
   }
 
   public getRestaurants(): Observable<Array<RestaurantsModel>> {
-    return this.http.get<Array<RestaurantsModel>>(`${environment.apiEndPoint}restaurants.json`);
+    return this.http.get<Array<RestaurantsModel>>(`${environment.localEndPoint}restaurants.json`);
   }
 
 }

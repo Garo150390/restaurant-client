@@ -1,0 +1,63 @@
+<form class="col-10 p-5 loginForm text-white position-relative"
+      [formGroup]="loginForm"
+      (ngSubmit)="submitLoginForm()">
+
+  <!-- email -->
+  <div class="form-group">
+    <div class="d-flex">
+      <i class="icon-user-o pt-1 pr-1"></i>
+      <input formControlName="email" type="email" #email
+             class="form-control form-control-lg position-absolute pl-5"
+             placeholder="Enter email" name="email"
+             (keyup)="alertValidate(email)">
+    </div>
+    <small *ngIf="loginForm.controls['email'].dirty &&
+        loginForm.controls['email'].hasError('required') ||
+         (loginForm.controls['email'].touched &&
+         loginForm.controls['email'].hasError('required'))">
+      Email is required
+    </small>
+    <small class="text-danger"
+           *ngIf="loginForm.controls['email'].hasError('incorrect')">
+      such user not found
+    </small>
+  </div>
+
+  <!-- password -->
+  <div class="form-group mb-4">
+    <div class="d-flex">
+      <i class="icon-lock pt-1 pr-1"></i>
+      <input formControlName="password" type="password" #password
+             class="form-control form-control-lg position-absolute pl-5"
+             placeholder="Password" name="password"
+             (keyup)="alertValidate(password)">
+    </div>
+
+    <small *ngIf="(loginForm.controls['password'].dirty &&
+          loginForm.controls['password'].hasError('required')) ||
+          (loginForm.controls['password'].touched &&
+          loginForm.controls['password'].hasError('required'))">
+      Password is required
+    </small>
+    <small *ngIf="loginForm.controls['password'].dirty &&
+          loginForm.controls['password'].hasError('minlength')">
+      Your password should be longer then {{ config.password.MINLENGTH}} characters
+    </small>
+    <small *ngIf="loginForm.controls['password'].dirty &&
+          loginForm.controls['password'].hasError('maxlength')">
+      Your password should be shorter then {{ config.password.MAXLENGTH}} characters
+    </small>
+    <small class="text-danger"
+           *ngIf="loginForm.controls['password'].hasError('incorrect')">
+      wrong password
+    </small>
+
+
+  </div>
+
+  <!-- buttons -->
+  <div class="row justify-content-around pt-2">
+    <button type="submit" class="btn btn-primary loginBtn">Log in</button>
+    <button routerLink="/auth/register" type="submit" class="btn btn-success registerBtn">Sign up</button>
+  </div>
+</form>

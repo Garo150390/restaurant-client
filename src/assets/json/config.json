@@ -1,0 +1,8 @@
+{
+  "validator": {
+    "password": {
+      "MINLENGTH": 6,
+      "MAXLENGTH": 20
+    }
+  }
+}

@@ -2,7 +2,9 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/app",
-    "types": []
+    "types": [],
+    "resolveJsonModule": true,      // import JSON files as input files
+    "esModuleInterop": true        // import JSON files as input files
   },
   "exclude": [
     "test.ts",
