@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GalleryModule } from '@ngx-gallery/core';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { LightboxModule } from '@ngx-gallery/lightbox';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { GallerizeModule } from '@ngx-gallery/gallerize';
@@ -27,11 +28,15 @@ import { PhotoComponent } from './photo/photo.component';
     LightboxModule.withConfig({
       panelClass: 'fullscreen',
     }),
-    GallerizeModule
+    GallerizeModule,
+    NgxPaginationModule
   ],
   providers: [
     GalleryService,
-    { provide: OverlayContainer, useFactory: () => new AppOverlayContainer(PhotoGalleryComponent) },
+    /*{
+      provide: OverlayContainer,
+      useFactory: () => new AppOverlayContainer(PhotoGalleryComponent)
+    },*/
   ]
 })
 export class PhotoGalleryModule {

@@ -21,6 +21,9 @@ import { OrderModule } from './pages/order/order.module';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
+import {OverlayContainer} from '@angular/cdk/overlay';
+import {AppOverlayContainer} from './pages/photo-gallery/custom-overlay-container';
+import {PhotoGalleryModule} from './pages/photo-gallery/photo-gallery.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -58,7 +61,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     LightboxModule,
     GallerizeModule
   ],
-  providers: [],
+  providers: [
+    /*{
+      provide: OverlayContainer,
+      useFactory: () => new AppOverlayContainer(PhotoGalleryModule)
+    },*/
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
