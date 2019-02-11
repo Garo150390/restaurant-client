@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { environment } from '../../../environments/environment';
 import { RestaurantsModel } from '../models';
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class RestaurantsService {
@@ -12,7 +13,25 @@ export class RestaurantsService {
   }
 
   public getRestaurants(): Observable<Array<RestaurantsModel>> {
-    return this.http.get<Array<RestaurantsModel>>(`${environment.localEndPoint}restaurants.json`);
+    return this.http.get<Array<RestaurantsModel>>(`${environment.apiEndPoint}/restaurants`)
+      .pipe(
+        map(res => {
+          return res.map((restauran) => {
+            restauran.avatar = `${environment.apiEndPoint}/${restauran.avatar}`;
+            return restauran;
+          });
+        })
+      );
+  }
+
+  public getRestaurantById(id): Observable<RestaurantsModel> {
+    return this.http.get<RestaurantsModel>(`${environment.apiEndPoint}/restaurants/${id}`)
+      .pipe(
+        map(res => {
+          res.avatar = `${environment.apiEndPoint}/${res.avatar}`;
+          return res;
+        })
+      );
   }
 
 }

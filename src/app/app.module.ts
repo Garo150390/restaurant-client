@@ -21,6 +21,7 @@ import { OrderModule } from './pages/order/order.module';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
+import {CdkOverlayContainer} from './core/services/cdkOverlay/cdk-overlay-container';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -39,10 +40,9 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    CoreModule,
     SharedModule,
+    CoreModule,
+    BrowserAnimationsModule,
     BlogsModule,
     OrderModule,
     TranslateModule.forRoot({
@@ -56,9 +56,12 @@ export function HttpLoaderFactory(http: HttpClient) {
       loadingMode: 'indeterminate',
     }),
     LightboxModule,
-    GallerizeModule
+    GallerizeModule,
+    AppRoutingModule,
   ],
-  providers: [],
+  providers: [
+    {provide: CdkOverlayContainer}
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

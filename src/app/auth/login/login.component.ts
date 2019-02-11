@@ -6,7 +6,6 @@ import { ValidatorHelper } from '../../core/helpers/validator.helper';
 import { StorageService } from '../../core/services/storage.service';
 import { LoginService } from '../../core/services/login.service';
 import { AuthService } from '../../core/services/auth.service';
-import { validator } from '../../../assets/json/config.json';
 import { UserResponse } from '../../core/models';
 
 @Component({
@@ -16,7 +15,6 @@ import { UserResponse } from '../../core/models';
 })
 export class LoginComponent implements OnInit {
 
-  public config = validator;
   public loginForm: FormGroup;
 
   constructor(private loginService: LoginService,
@@ -30,8 +28,8 @@ export class LoginComponent implements OnInit {
       'password': new FormControl('', [
         Validators.required,
         Validators.pattern(ValidatorHelper.passwordRegEx),
-        Validators.minLength(validator.password.MINLENGTH),
-        Validators.maxLength(validator.password.MAXLENGTH)
+        Validators.minLength(6),
+        Validators.maxLength(20)
       ])
     });
   }

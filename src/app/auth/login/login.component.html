@@ -41,11 +41,11 @@
     </small>
     <small *ngIf="loginForm.controls['password'].dirty &&
           loginForm.controls['password'].hasError('minlength')">
-      Your password should be longer then {{ config.password.MINLENGTH}} characters
+      Your password should be longer then 6 characters
     </small>
     <small *ngIf="loginForm.controls['password'].dirty &&
           loginForm.controls['password'].hasError('maxlength')">
-      Your password should be shorter then {{ config.password.MAXLENGTH}} characters
+      Your password should be shorter then 20 characters
     </small>
     <small class="text-danger"
            *ngIf="loginForm.controls['password'].hasError('incorrect')">

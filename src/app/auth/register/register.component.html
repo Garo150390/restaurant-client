@@ -91,11 +91,11 @@
 
         <small *ngIf="registerForm.controls['password'].dirty &&
           registerForm.controls['password'].hasError('minlength')">
-          Your password should be longer then {{ config.password.MINLENGTH}} characters
+          Your password should be longer then 6 characters
         </small>
         <small *ngIf="registerForm.controls['password'].dirty &&
           registerForm.controls['password'].hasError('maxlength')">
-          Your password should be shorter then {{ config.password.MINLENGTH}} characters
+          Your password should be shorter then 20 characters
         </small>
 
       </div>

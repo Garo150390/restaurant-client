@@ -27,11 +27,13 @@ import { PhotoComponent } from './photo/photo.component';
     LightboxModule.withConfig({
       panelClass: 'fullscreen',
     }),
-    GallerizeModule
+    GallerizeModule,
+    // LightboxModule
   ],
   providers: [
     GalleryService,
-    { provide: OverlayContainer, useFactory: () => new AppOverlayContainer(PhotoGalleryComponent) },
+    /*{ provide: OverlayContainer, useFactory: () => new AppOverlayContainer(PhotoGalleryComponent)
+    },*/
   ]
 })
 export class PhotoGalleryModule {

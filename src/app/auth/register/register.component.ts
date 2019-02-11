@@ -7,8 +7,6 @@ import { StorageService } from '../../core/services/storage.service';
 import { CustomValidators } from '../../shared/custom-validators';
 import { UserService } from '../../core/services/user.service';
 import { AuthService } from '../../core/services/auth.service';
-import { validator } from '../../../assets/json/config.json';
-
 
 @Component({
   selector: 'app-register',
@@ -18,7 +16,6 @@ import { validator } from '../../../assets/json/config.json';
 export class RegisterComponent implements OnInit {
 
   public registerForm: FormGroup;
-  public config = validator;
 
   constructor(private userService: UserService,
               private authService: AuthService,
@@ -44,14 +41,14 @@ export class RegisterComponent implements OnInit {
       'password': new FormControl('', [
         Validators.required,
         Validators.pattern(ValidatorHelper.passwordRegEx),
-        Validators.minLength(this.config.password.MINLENGTH),
-        Validators.maxLength(this.config.password.MAXLENGTH)
+        Validators.minLength(6),
+        Validators.maxLength(20)
       ]),
       'confirmPassword': new FormControl('', [
         Validators.required,
         Validators.pattern(ValidatorHelper.passwordRegEx),
-        Validators.minLength(this.config.password.MINLENGTH),
-        Validators.maxLength(this.config.password.MAXLENGTH)
+        Validators.minLength(6),
+        Validators.maxLength(20)
       ]),
 
       'city': new FormControl('', [

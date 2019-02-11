@@ -1,6 +1,6 @@
 <div class="single-service">
-  <div routerLink="/restaurants/{{restaurant.id}}" class="thumb">
-    <img src="assets/images/restaurants/{{restaurant.avatar}}" alt="">
+  <div routerLink="/restaurants/{{restaurant._id}}" class="thumb">
+    <img [src]="restaurant.avatar" alt="">
   </div>
   <a>
     <h4>{{restaurant.name}}</h4>
