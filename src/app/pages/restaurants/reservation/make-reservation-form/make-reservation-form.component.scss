@@ -1,0 +1,104 @@
+@import "~bootstrap/scss/bootstrap";
+@import "~src/assets/scss/core/variables";
+
+.form-select {
+  height: 40px;
+  width: 100%;
+
+  .nice-select {
+    border: none;
+    border-radius: 0;
+    height: 40px;
+    background: #fff !important;
+    padding-left: 45px;
+    padding-right: 40px;
+    width: 100%;
+
+    .list {
+      margin-top: 0;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      width: 100%;
+      padding: 10px 0 10px 0;
+
+      .option {
+        font-weight: 300;
+        @include transition();
+        line-height: 28px;
+        min-height: 28px;
+        font-size: 17px;
+        padding-left: 45px;
+
+        &.selected {
+          color: $primary;
+          background: transparent;
+        }
+
+        &:hover {
+          color: $primary;
+          background: transparent;
+        }
+      }
+    }
+  }
+
+  .current {
+    margin-right: 50px;
+    font-weight: 300;
+  }
+
+  .nice-select::after {
+    right: 20px;
+  }
+}
+
+
+.form-wrap {
+  background: $white;
+  padding: 100px 40px;
+
+  small {
+    color: red;
+  }
+
+  .form-control {
+    border-radius: 0;
+    margin-bottom: 10px;
+    border-color: #eeeeee;
+    font-size: 18px;
+    font-weight: 300;
+    padding: 0.575rem 0.75rem;
+    //color: #999999;
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  .nice-select {
+    border: 1px solid #eeeeee;
+  }
+}
+
+.primary-btn {
+  text-transform: capitalize !important;
+  @include transition();
+
+  &:hover {
+    box-shadow: -14.142px 14.142px 20px 0 rgba(244, 47, 44, 0.2);
+  }
+}
+
+.nice-select {
+  padding-left: 12px;
+  padding-right: 0;
+
+  .list {
+    border: 1px solid #eee;
+
+    .option {
+      padding-left: 12px;
+    }
+  }
+}
