@@ -1,5 +1,5 @@
 .frame {
-  max-height: 243px;
+  height: 100%;
   overflow: hidden;
 }
 
@@ -8,10 +8,12 @@
   margin-bottom: 0;
   background: black;
   opacity: 1;
+  height: 100%;
 }
 
 .image{
   transition: 0.8s ease;
+  height: inherit;
 }
 
 .info{
