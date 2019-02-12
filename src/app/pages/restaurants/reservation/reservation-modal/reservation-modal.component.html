@@ -3,7 +3,7 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="name">Name</label>
-      <input formControlName="name" type="text"
+      <input formControlName="name" type="text" name="name"
              (keyup)="alertValidate(name)" #name
              class="form-control" id="name" placeholder="Name">
       <small *ngIf="(reservationForms.controls['name'].dirty &&
@@ -19,13 +19,14 @@
     </div>
     <div class="form-group col-md-6">
       <label for="surname">SurName</label>
-      <input formControlName="surname" type="text" class="form-control" id="surname" placeholder="Surname">
+      <input formControlName="surname" type="text" name="surname"
+             class="form-control" id="surname" placeholder="Surname">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="phone">Phone number</label>
-      <input formControlName="phone" type="text" name="name"
+      <input formControlName="phone" type="text" name="phone"
              (keyup)="alertValidate(phone)" #phone
              class="form-control" id="phone" placeholder="Phone number">
       <small *ngIf="(reservationForms.controls['phone'].dirty &&
@@ -54,17 +55,13 @@
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <select name="occasions" class="form-control custom-select">
-        <option data-display="">select an occasions</option>
-        <option value="birthday">Birthday</option>
-        <option value="anniversary">Anniversary</option>
-        <option value="date-night">Date night</option>
-        <option value="business-meal">Business meal</option>
-        <option value="celebration">Celebration</option>
+      <select formControlName="occasions" name="occasions" class="form-control">
+        <option *ngFor="let feast of celebrations" [value]="feast.value">{{feast.name}}</option>
       </select>
     </div>
     <div class="form-group col-md-6">
-      <textarea class="form-control" rows="2"
+      <textarea formControlName="message" name="message"
+                class="form-control" rows="2"
                 placeholder="Add a special request"
                 title="Add a special request">
       </textarea>

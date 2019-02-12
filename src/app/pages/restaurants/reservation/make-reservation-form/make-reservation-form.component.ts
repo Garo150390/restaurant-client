@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ReservationService} from '../../../../core/services/reservation.service';
+import {ValidateService} from '../../../../core/services/validate.service';
+
+declare var $: any;
 
 @Component({
   selector: 'app-make-reservation-form',
@@ -11,8 +15,10 @@ export class MakeReservationFormComponent implements OnInit {
   public reserveForm: FormGroup;
   public timer = {hour: 13, minute: 30};
   public date: FormControl;
-  // public time: FormControl;
-  public for: FormControl;
+  public count: FormControl;
+  public success: boolean = false;
+  public request: boolean = false;
+  public tables: any;
 
   constructor() {
   }
@@ -24,46 +30,49 @@ export class MakeReservationFormComponent implements OnInit {
 
   private createFormControls(): void {
     this.date = new FormControl('', [Validators.required]);
-    this.for = new FormControl('1');
+    this.count = new FormControl('1');
   }
 
   private createForm(): void {
     this.reserveForm = new FormGroup({
       'date': this.date,
-      'for': this.for,
-    });
-  }
-
-  public validateAllFormFields(formGroup: FormGroup): void {
-    Object.keys(formGroup.controls).forEach(field => {
-      const control = formGroup.get(field);
-
-      if (control instanceof FormControl) {
-        control.markAsTouched({onlySelf: true});
-        console.log('ok');
-      } else if (control instanceof FormGroup) {
-        this.validateAllFormFields(control);
-      }
+      'count': this.count,
     });
   }
 
   public alertValidate(event) {
-    if (this[event.name].status === 'INVALID') {
-      event.classList.add('bg-danger');
-    } else {
-      event.classList.remove('bg-danger');
-    }
+    ValidateService.alertValidate(event, this.reserveForm);
   }
 
   submitReservForm() {
-    console.log((this.date.dirty && this.date.hasError('required'))
-      || (this.date.touched && this.date.hasError('required')));
     if (this.reserveForm.invalid) {
-      this.validateAllFormFields(this.reserveForm);
+      ValidateService.validateAllFormFields(this.reserveForm);
     } else {
-      console.log(this.reserveForm.getRawValue());
+      const { date, count } = this.reserveForm.getRawValue();
+      const {hour, minute} = this.timer;
+      const lunch_start = `${hour}:${minute}`;
+      const request = {
+        day: `${date.year}-${date.month}-${date.day}`,
+        lunch_start,
+        guests_number: count
+      };
+      ReservationService.request = {...request};
+      console.log(ReservationService.request);
+      this.request = true;
+      setTimeout(() => {
+        this.tables = [
+          {
+            time: '11:11',
+          },
+          {
+            time: '22:22',
+          }
+        ];
+        this.success = false;
+        this.request = false;
+        // $('#reservation').modal('show');
+      }, 1500);
     }
   }
-
 
 }
