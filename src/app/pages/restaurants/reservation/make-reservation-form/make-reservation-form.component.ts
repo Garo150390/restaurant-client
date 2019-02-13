@@ -45,6 +45,7 @@ export class MakeReservationFormComponent implements OnInit {
   }
 
   submitReservForm() {
+    $('#reservation').modal('show');
     if (this.reserveForm.invalid) {
       ValidateService.validateAllFormFields(this.reserveForm);
     } else {
@@ -68,7 +69,7 @@ export class MakeReservationFormComponent implements OnInit {
             time: '22:22',
           }
         ];
-        this.success = false;
+        // this.success = false;
         this.request = false;
         // $('#reservation').modal('show');
       }, 1500);

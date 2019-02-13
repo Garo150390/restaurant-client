@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import {ValidatorHelper} from '../../../../core/helpers/validator.helper';
-import {ValidateService} from '../../../../core/services/validate.service';
-import {ReservationService} from '../../../../core/services/reservation.service';
+import { ValidatorHelper } from '../../../../core/helpers/validator.helper';
+import { ValidateService } from '../../../../core/services/validate.service';
+import { ReservationService } from '../../../../core/services/reservation.service';
 
 @Component({
   selector: 'app-reservation-modal',
@@ -19,7 +20,7 @@ export class ReservationModalComponent implements OnInit {
   public occasions: FormControl;
   public message: FormControl;
   public reservationForms: FormGroup;
-  public select: any;
+  private restaurant_id: object;
 
   public celebrations = [
     {value: 'birthday', name: 'Birthday'},
@@ -29,10 +30,12 @@ export class ReservationModalComponent implements OnInit {
     {value: 'celebration', name: 'Celebration'},
   ];
 
-  constructor(private reservationServic: ReservationService) {
+  constructor(private reservationServic: ReservationService,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit() {
+    this.restaurant_id = this.route.snapshot.params.id;
     this.createFormControls();
     this.createForm();
   }
@@ -51,7 +54,7 @@ export class ReservationModalComponent implements OnInit {
     ]);
     this.phone = new FormControl('', Validators.required);
     this.message = new FormControl('');
-    this.occasions = new FormControl('select an occasions');
+    this.occasions = new FormControl(null);
   }
 
   private createForm(): void {
@@ -77,7 +80,8 @@ export class ReservationModalComponent implements OnInit {
       const req = this.reservationForms.getRawValue();
       ReservationService.request = {
         ...data,
-        ...req
+        ...req,
+        restaurant_id: this.restaurant_id
       };
       console.log(ReservationService.request);
     }
