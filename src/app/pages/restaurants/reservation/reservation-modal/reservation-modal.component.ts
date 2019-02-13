@@ -52,7 +52,10 @@ export class ReservationModalComponent implements OnInit {
       Validators.required,
       Validators.pattern(ValidatorHelper.emailRegEx),
     ]);
-    this.phone = new FormControl('', Validators.required);
+    this.phone = new FormControl('', [
+      Validators.required,
+      Validators.pattern(ValidatorHelper.phoneRegex),
+    ]);
     this.message = new FormControl('');
     this.occasions = new FormControl(null);
   }
