@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuService } from '../../core/services/menu.service';
 import { SharedModule } from '../../shared/shared.module';
 import { MenuComponent } from './menu/menu.component';
+import { MakeReservationFormComponent } from './reservation/make-reservation-form/make-reservation-form.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { MenuComponent } from './menu/menu.component';
     MenuComponent,
     ProductsComponent,
     ReservationComponent,
-    ReservationModalComponent
+    ReservationModalComponent,
+    MakeReservationFormComponent
   ],
   imports: [
     CommonModule,

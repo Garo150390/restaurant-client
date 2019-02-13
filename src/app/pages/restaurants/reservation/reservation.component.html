@@ -12,46 +12,7 @@
         </p>
       </div>
       <div class="col-lg-5 reservation-right">
-        <form [formGroup]="reservForm" (ngSubmit)="submitReservForm()"
-              class="form-wrap">
-          <div>
-            <label>
-              <select name="count" class="form-control">
-                <option data-display="">for</option>
-                <option value="1">for 1</option>
-                <option value="2">for 2</option>
-                <option value="3">for 3</option>
-                <option value="4">for 4</option>
-              </select>
-            </label>
-          </div>
-          <div class="form-group">
-            <div class="input-group">
-              <input class="form-control" placeholder="yyyy-mm-dd"
-                     name="date" ngbDatepicker #d="ngbDatepicker"
-                     aria-describedby="calendar"
-                     (keyup)="alertValidate(date)" #date>
-              <small *ngIf="(reservForm.controls['date'].dirty
-                  && reservForm.controls['date'].hasError('required'))
-                || (reservForm.controls['date'].touched
-                  && reservForm.controls['date'].hasError('required'))">
-                Date is required
-              </small>
-              <div class="input-group-append">
-                <button class="btn icon-calendar"
-                        (click)="d.toggle()" type="button" id="calendar">
-                </button>
-              </div>
-            </div>
-            <ngb-timepicker [(ngModel)]="time"
-                            [ngModelOptions]="{standalone: true}">
-            </ngb-timepicker>
-          </div>
-          <button type="button" class="btn btn-danger mt-3"
-                  data-toggle="modal" data-target="#reservation"
-          >MAKE RESERVATION
-          </button>
-        </form>
+        <app-make-reservation-form></app-make-reservation-form>
       </div>
     </div>
   </div>

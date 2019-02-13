@@ -16,9 +16,9 @@ export class RestaurantsService {
     return this.http.get<Array<RestaurantsModel>>(`${environment.apiEndPoint}/restaurants`)
       .pipe(
         map(res => {
-          return res.map((restauran) => {
-            restauran.avatar = `${environment.apiEndPoint}/${restauran.avatar}`;
-            return restauran;
+          return res.map((restaurant) => {
+            restaurant.avatar = `${environment.apiEndPoint}/${restaurant.avatar}`;
+            return restaurant;
           });
         })
       );

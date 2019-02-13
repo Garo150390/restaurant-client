@@ -1,13 +1,22 @@
 <app-banner [name]="'Gallery'"></app-banner>
 
-<div class="container">
-  <div class="row">
-    <div class="col-3 my-3" *ngFor="let item of photos; let i = index">
-      <img [lightbox]="i"
-           [gallery]="galleryId"
-           [src]="item.data.thumb" width="250px">
+<section class="gallery-block compact-gallery">
+  <div class="container">
+    <div class="row" *ngIf="photos?.length">
+      <div class="col-4 my-2 p-0 pl-3"
+           *ngFor="let item of photos | paginate: { itemsPerPage: 9, currentPage: p, totalItems: total }; let i = index">
+        <div class="img_size">
+          <app-photo [src]="item.data.thumb"
+                     [lightbox]="i"
+                     [gallery]="galleryId"
+          ></app-photo>
+        </div>
+
+      </div>
     </div>
   </div>
-</div>
+</section>
+
+<pagination-controls class="text-lg-center" (pageChange)="changePage($event)"></pagination-controls>
 
 <div id="content-container" class="fixed-top" appCdkOverlayContainer></div>

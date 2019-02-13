@@ -11,26 +11,43 @@ import { ValidateService } from '../../../../core/services/validate.service';
 })
 export class ReservationModalComponent implements OnInit {
 
+  public name: FormControl;
+  public surname: FormControl;
+  public email: FormControl;
+  public phone: FormControl;
+  public address: FormControl;
   public reservationForms: FormGroup;
 
   constructor() {
-    this.reservationForms = new FormGroup({
-      'name': new FormControl('', [
-        Validators.required,
-        Validators.pattern(ValidatorHelper.nameRegEx)
-      ]),
-      'surname': new FormControl('', []),
-      'email': new FormControl('', [
-        Validators.required,
-        Validators.pattern(ValidatorHelper.emailRegEx),
-      ]),
-      'phone': new FormControl('', [
-        Validators.required,
-      ])
-    });
   }
 
   ngOnInit() {
+    this.createFormControls();
+    this.createForm();
+  }
+
+  private createFormControls(): void {
+    this.name = new FormControl('', [
+      Validators.required,
+      Validators.pattern(ValidatorHelper.nameRegEx)
+    ]);
+    this.surname = new FormControl('', []);
+    this.email = new FormControl('', [
+      Validators.required,
+      Validators.pattern(ValidatorHelper.emailRegEx),
+    ]);
+    this.phone = new FormControl('', [
+      Validators.required,
+    ]);
+  }
+
+  private createForm(): void {
+    this.reservationForms = new FormGroup({
+      'name': this.name,
+      'surname': this.surname,
+      'email': this.email,
+      'phone': this.phone,
+    });
   }
 
   public alertValidate(event) {

@@ -18,7 +18,7 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-    // canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService]
   },
   {
     path: 'auth',
@@ -30,11 +30,13 @@ const routes: Routes = [
   },
   {
     path: 'about',
-    component: AboutComponent
+    component: AboutComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'contact',
-    component: ContactComponent
+    component: ContactComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'restaurants',
@@ -43,15 +45,18 @@ const routes: Routes = [
   },
   {
     path: 'restaurants/:id',
-    loadChildren: './pages/restaurants/restaurants.module#RestaurantsModule'
+    loadChildren: './pages/restaurants/restaurants.module#RestaurantsModule',
+    canActivate: [AuthGuardService]
   },
   {
     path: 'gallery',
-    loadChildren: './pages/photo-gallery/photo-gallery.module#PhotoGalleryModule'
+    loadChildren: './pages/photo-gallery/photo-gallery.module#PhotoGalleryModule',
+    canActivate: [AuthGuardService]
   },
   {
     path: 'blog',
-    loadChildren: './pages/blogs/blogs.module#BlogsModule'
+    loadChildren: './pages/blogs/blogs.module#BlogsModule',
+    canActivate: [AuthGuardService]
   },
   {
     path: '**',

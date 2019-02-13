@@ -1,0 +1,50 @@
+<form [formGroup]="reserveForm" (ngSubmit)="submitReservForm()"
+      class="form-wrap">
+  <div>
+    <label>
+      <select formControlName="for" name="count" class="form-select custom-select">
+        <option data-display="">for</option>
+        <option value="1">for 1</option>
+        <option value="2">for 2</option>
+        <option value="3">for 3</option>
+        <option value="4">for 4</option>
+      </select>
+    </label>
+  </div>
+  <div class="">
+    <div class="input-group">
+      <input class="form-control" placeholder="yyyy-mm-dd" type="text"
+             name="date" ngbDatepicker #d="ngbDatepicker"
+             aria-describedby="calendar"
+             formControlName="date"
+             (keyup)="alertValidate(date)" #date>
+      <!--<div class="alert-danger" *ngIf="(reserveForm.controls['date'].dirty
+                    && reserveForm.controls['date'].hasError('required'))
+                || (reserveForm.controls['date'].touched
+                    && reserveForm.controls['date'].hasError('required'))">
+        Date is required
+      </div>-->
+
+      <div class="input-group-append">
+        <button class="btn icon-calendar"
+                (click)="d.toggle()" type="button" id="calendar">
+        </button>
+      </div>
+    </div>
+    <ngb-timepicker [(ngModel)]="timer"
+                    [ngModelOptions]="{standalone: true}">
+    </ngb-timepicker>
+  </div>
+  <button type="submit" class="btn btn-danger mt-3"
+          data-toggle="modal" data-target="#reservation"
+  >MAKE RESERVATION
+  </button>
+</form>
+
+<div class="alert-danger" *ngIf="date.touched">
+  Date is required
+</div>
+
+<div class="alert-danger" *ngIf="reserveForm.controls['date'].touched">
+  Date is required
+</div>
