@@ -10,9 +10,9 @@ export class ValidateService {
 
   static alertValidate(event, formGroup) {
     if (formGroup.controls[event.name].status === 'INVALID') {
-      event.classList.add('bg-danger');
+      event.classList.add('border-danger', 'shadow-none');
     } else {
-      event.classList.remove('bg-danger');
+      event.classList.remove('border-danger', 'shadow-none');
     }
   }
 

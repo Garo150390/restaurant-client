@@ -1,20 +1,36 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {NgbCalendar, NgbDate, NgbDatepickerConfig, NgbTimepickerConfig} from '@ng-bootstrap/ng-bootstrap';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+
+import { ReservationService} from '../../../../core/services/reservation.service';
+import { ValidateService } from '../../../../core/services/validate.service';
+
+declare var $: any;
 
 @Component({
   selector: 'app-make-reservation-form',
   templateUrl: './make-reservation-form.component.html',
-  styleUrls: ['./make-reservation-form.component.scss']
+  styleUrls: ['./make-reservation-form.component.scss'],
+  providers: [NgbTimepickerConfig]
 })
 export class MakeReservationFormComponent implements OnInit {
 
   public reserveForm: FormGroup;
-  public timer = {hour: 13, minute: 30};
+  public timer1 = {hour: 13, minute: 30};
+  public timer2 = {hour: 15, minute: 0};
   public date: FormControl;
-  // public time: FormControl;
-  public for: FormControl;
+  public count: FormControl;
+  public success = false;
+  public request = false;
+  public tables: any;
 
-  constructor() {
+  constructor(private config: NgbTimepickerConfig,
+              private dateCongig: NgbDatepickerConfig) {
+    const currentDate = new Date();
+    config.spinners = false;
+    dateCongig.minDate = {year: currentDate.getFullYear(), month: currentDate.getMonth() + 1, day: currentDate.getDate()};
+    dateCongig.maxDate = {year: 2019, month: 2, day: 31};
+    dateCongig.outsideDays = 'hidden';
   }
 
   ngOnInit() {
@@ -24,46 +40,51 @@ export class MakeReservationFormComponent implements OnInit {
 
   private createFormControls(): void {
     this.date = new FormControl('', [Validators.required]);
-    this.for = new FormControl('1');
+    this.count = new FormControl('1');
   }
 
   private createForm(): void {
     this.reserveForm = new FormGroup({
       'date': this.date,
-      'for': this.for,
-    });
-  }
-
-  public validateAllFormFields(formGroup: FormGroup): void {
-    Object.keys(formGroup.controls).forEach(field => {
-      const control = formGroup.get(field);
-
-      if (control instanceof FormControl) {
-        control.markAsTouched({onlySelf: true});
-        console.log('ok');
-      } else if (control instanceof FormGroup) {
-        this.validateAllFormFields(control);
-      }
+      'count': this.count,
     });
   }
 
   public alertValidate(event) {
-    if (this[event.name].status === 'INVALID') {
-      event.classList.add('bg-danger');
-    } else {
-      event.classList.remove('bg-danger');
-    }
+    ValidateService.alertValidate(event, this.reserveForm);
   }
 
   submitReservForm() {
-    console.log((this.date.dirty && this.date.hasError('required'))
-      || (this.date.touched && this.date.hasError('required')));
+    this.success = true;
     if (this.reserveForm.invalid) {
-      this.validateAllFormFields(this.reserveForm);
+      ValidateService.validateAllFormFields(this.reserveForm);
     } else {
-      console.log(this.reserveForm.getRawValue());
+      const { date, count } = this.reserveForm.getRawValue();
+      const lunch_start = `${this.timer1.hour}:${this.timer1.minute}`;
+      const lunch_end = `${this.timer2.hour}:${this.timer2.minute}`;
+      const request = {
+        day: `${date.year}-${date.month}-${date.day}`,
+        lunch_start,
+        lunch_end,
+        guests_number: count
+      };
+      ReservationService.request = {...request};
+      console.log(ReservationService.request);
+      this.request = true;
+      setTimeout(() => {
+        this.tables = [
+          {
+            time: '11:11 - 12:00',
+          },
+          {
+            time: '13:30 - 14:40',
+          }
+        ];
+        this.success = false;
+        this.request = false;
+        // $('#reservation').modal('show');
+      }, 1500);
     }
   }
-
 
 }

@@ -56,7 +56,6 @@
 
 .form-wrap {
   background: $white;
-  padding: 100px 40px;
 
   small {
     color: red;
@@ -101,4 +100,8 @@
       padding-left: 12px;
     }
   }
+}
+
+::ng-deep .mat-progress-spinner.mat-progress-spinner-indeterminate-animation[mode=indeterminate] circle {
+  stroke: #ff1822;
 }

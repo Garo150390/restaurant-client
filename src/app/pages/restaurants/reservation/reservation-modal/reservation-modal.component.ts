@@ -1,8 +1,10 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { ValidatorHelper } from '../../../../core/helpers/validator.helper';
 import { ValidateService } from '../../../../core/services/validate.service';
+import { ReservationService } from '../../../../core/services/reservation.service';
 
 @Component({
   selector: 'app-reservation-modal',
@@ -15,13 +17,25 @@ export class ReservationModalComponent implements OnInit {
   public surname: FormControl;
   public email: FormControl;
   public phone: FormControl;
-  public address: FormControl;
+  public occasions: FormControl;
+  public message: FormControl;
   public reservationForms: FormGroup;
+  private restaurant_id: object;
 
-  constructor() {
+  public celebrations = [
+    {value: 'birthday', name: 'Birthday'},
+    {value: 'anniversary', name: 'Anniversary'},
+    {value: 'date-night', name: 'Date night'},
+    {value: 'business-meal', name: 'Business meal'},
+    {value: 'celebration', name: 'Celebration'},
+  ];
+
+  constructor(private reservationServic: ReservationService,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit() {
+    this.restaurant_id = this.route.snapshot.params.id;
     this.createFormControls();
     this.createForm();
   }
@@ -31,14 +45,19 @@ export class ReservationModalComponent implements OnInit {
       Validators.required,
       Validators.pattern(ValidatorHelper.nameRegEx)
     ]);
-    this.surname = new FormControl('', []);
+    this.surname = new FormControl('', [
+      Validators.pattern(ValidatorHelper.nameRegEx)
+    ]);
     this.email = new FormControl('', [
       Validators.required,
       Validators.pattern(ValidatorHelper.emailRegEx),
     ]);
     this.phone = new FormControl('', [
       Validators.required,
+      Validators.pattern(ValidatorHelper.phoneRegex),
     ]);
+    this.message = new FormControl('');
+    this.occasions = new FormControl(null);
   }
 
   private createForm(): void {
@@ -47,6 +66,8 @@ export class ReservationModalComponent implements OnInit {
       'surname': this.surname,
       'email': this.email,
       'phone': this.phone,
+      'occasions': this.occasions,
+      'message': this.message,
     });
   }
 
@@ -58,8 +79,14 @@ export class ReservationModalComponent implements OnInit {
     if (this.reservationForms.invalid) {
       ValidateService.validateAllFormFields(this.reservationForms);
     } else {
-      console.log(this.reservationForms.getRawValue());
+      const data = ReservationService.request;
+      const req = this.reservationForms.getRawValue();
+      ReservationService.request = {
+        ...data,
+        ...req,
+        restaurant_id: this.restaurant_id
+      };
+      console.log(ReservationService.request);
     }
   }
-
 }
