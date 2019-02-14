@@ -1,15 +1,17 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
 import { Lightbox } from '@ngx-gallery/lightbox';
 import { ActivatedRoute } from '@angular/router';
-import {Gallery, GalleryItem, GalleryRef, ThumbnailsPosition} from '@ngx-gallery/core';
+import { OverlayContainer } from '@angular/cdk/overlay';
+import { Component, ElementRef, OnInit } from '@angular/core';
+import { Gallery, GalleryItem, GalleryRef, ThumbnailsPosition } from '@ngx-gallery/core';
 
 import { GalleryService } from '../../../core/services/gallery.service';
-import {OverlayContainer} from '@angular/cdk/overlay';
+
+declare const $: any;
 
 @Component({
   selector: 'app-photo-gallery',
   templateUrl: './photo-gallery.component.html',
-  styleUrls: ['./photo-gallery.component.scss'],
+  styleUrls: ['./photo-gallery.component.scss', ],
 })
 export class PhotoGalleryComponent implements OnInit {
 
@@ -30,7 +32,7 @@ export class PhotoGalleryComponent implements OnInit {
     this.p = 1;
 
     if (overlayContainer.getContainerElement()) {
-      setTimeout(() => elementReference.nativeElement.children[3].appendChild(overlayContainer.getContainerElement()), 0);
+      setTimeout(() => elementReference.nativeElement.children[2].appendChild(overlayContainer.getContainerElement()), 0);
     }
   }
 

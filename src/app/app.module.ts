@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { GalleryModule } from '@ngx-gallery/core';
 import { LightboxModule } from '@ngx-gallery/lightbox';
-import { OverlayContainer } from '@angular/cdk/overlay';
 import { GallerizeModule } from '@ngx-gallery/gallerize';
 import { BrowserModule } from '@angular/platform-browser';
 import {MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatProgressSpinnerModule} from '@angular/material';
@@ -11,8 +10,6 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { RestaurantCardComponent } from './pages/home/restaurant-card/restaurant-card.component';
-import { AppOverlayContainer } from './pages/photo-gallery/custom-overlay-container';
-import { PhotoGalleryModule } from './pages/photo-gallery/photo-gallery.module';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';

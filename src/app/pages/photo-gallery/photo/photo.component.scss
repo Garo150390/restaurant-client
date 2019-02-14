@@ -1,3 +1,4 @@
+/*
 .frame {
   height: 100%;
   overflow: hidden;
@@ -58,5 +59,13 @@
     transform: scale(1.3);
     opacity: 0.7;
     overflow: hidden;
+  }
+}
+*/
+
+.single-gallery{
+  margin-bottom:30px;
+  img{
+    width:100%;
   }
 }

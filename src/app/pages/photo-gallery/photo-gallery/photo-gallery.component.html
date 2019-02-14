@@ -1,6 +1,6 @@
 <app-banner [name]="'Gallery'"></app-banner>
 
-<section class="gallery-block compact-gallery">
+<!--<section class="gallery-block compact-gallery">
   <div class="container">
     <div class="row" *ngIf="photos?.length">
       <div class="col-4 my-2 p-0 pl-3"
@@ -15,8 +15,70 @@
       </div>
     </div>
   </div>
-</section>
+</section>-->
 
-<pagination-controls class="text-lg-center" (pageChange)="changePage($event)"></pagination-controls>
+<!--<section class="gallery-area section-gap" id="gallery">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="menu-content pb-70 col-lg-8">
+        <div class="title text-center">
+          <h1 class="mb-10">Food and Customer Gallery</h1>
+          <p>Who are in extremely love with eco friendly system.</p>
+        </div>
+      </div>
+    </div>
 
+    <ul class="filter-wrap filters col-lg-12 no-padding">
+      <li class="active" data-filter="*">All Menu</li>
+      <li data-filter=".breakfast">Breakfast</li>
+      <li data-filter=".lunch">Lunch</li>
+      <li data-filter=".dinner">Dinner</li>
+      <li data-filter=".budget-meal">Budget Meal</li>
+      <li data-filter=".buffet">Buffet</li>
+    </ul>
+
+    <div class="filters-content">
+      <div class="row grid">
+        <div class="col-lg-4 col-md-6 col-sm-6"
+             *ngFor="let item of photos | paginate: { itemsPerPage: 9, currentPage: p, totalItems: total }; let i = index">
+          <app-photo [src]="item.data.thumb"
+                     [lightbox]="i"
+                     [gallery]="galleryId"
+          ></app-photo>
+        </div>
+      </div>
+    </div>`
+
+  </div>
+</section>-->
+
+<!--<div class="row">
+  <div class="col-md-12 d-flex justify-content-center mb-5">
+    <button type="button" class="btn btn-outline-black waves-effect filter" data-rel="all">All</button>
+    <button type="button" class="btn btn-outline-black waves-effect filter" data-rel="1">Mountains</button>
+    <button type="button" class="btn btn-outline-black waves-effect filter" data-rel="2">Sea</button>
+  </div>
+</div>-->
+<div class="container">
+  <ul class="filter-wrap filters col-lg-12 no-padding">
+    <li class="active filter" data-filter="all">All Menu</li>
+    <li class="waves-effect filter" data-filter=".breakfast">Breakfast</li>
+    <li class="waves-effect filter" data-filter=".lunch">Lunch</li>
+    <li class="waves-effect filter" data-filter=".dinner">Dinner</li>
+    <li class="waves-effect filter" data-filter=".budget-meal">Budget Meal</li>
+    <li class="waves-effect filter" data-filter=".buffet">Buffet</li>
+  </ul>
+  <div class="col-lg-12 mx-auto">
+    <div class="gallery" id="gallery">
+      <div class="mb-3 pics animation all lunch"
+           *ngFor="let item of photos | paginate: { itemsPerPage: 9, currentPage: p, totalItems: total }; let i = index">
+        <img class="img-fluid" alt="Card image cap"
+             [src]="item.data.thumb"
+             [lightbox]="i"
+             [gallery]="galleryId">
+      </div>
+    </div>
+  </div>
+  <pagination-controls class="text-lg-center" (pageChange)="changePage($event)"></pagination-controls>
+</div>
 <div id="content-container" class="fixed-top"></div>
