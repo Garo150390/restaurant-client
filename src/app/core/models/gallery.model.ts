@@ -5,6 +5,7 @@ export interface GalleryModel {
 
 export interface ImageModel {
   name: string;
-  id: number;
-  title: string;
+  id?: number;
+  description: string;
+  thumb: string;
 }

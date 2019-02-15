@@ -3,13 +3,11 @@ import { CommonModule } from '@angular/common';
 import { GalleryModule } from '@ngx-gallery/core';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { LightboxModule } from '@ngx-gallery/lightbox';
-import { OverlayContainer } from '@angular/cdk/overlay';
 import { GallerizeModule } from '@ngx-gallery/gallerize';
 
 import { PhotoGalleryComponent } from './photo-gallery/photo-gallery.component';
 import { PhotoGalleryRoutingModule } from './photo-gallery-routing.module';
 import { GalleryService } from '../../core/services/gallery.service';
-import { AppOverlayContainer } from './custom-overlay-container';
 import { SharedModule } from '../../shared/shared.module';
 import { PhotoComponent } from './photo/photo.component';
 
@@ -29,7 +27,7 @@ import { PhotoComponent } from './photo/photo.component';
       panelClass: 'fullscreen',
     }),
     GallerizeModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ],
   providers: [
     GalleryService,

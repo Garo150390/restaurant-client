@@ -1,5 +1,5 @@
 <app-banner [name]="'order'"></app-banner>
-<div class="order_body col-7 m-auto">
+<div class="order_body col-7 mx-auto mt-5">
   <div *ngIf="products.length; else NotOrder">
     <app-ordered-products [products]="products"></app-ordered-products>
   </div>

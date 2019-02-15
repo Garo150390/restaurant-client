@@ -2,9 +2,11 @@ import { Lightbox } from '@ngx-gallery/lightbox';
 import { ActivatedRoute } from '@angular/router';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { Component, ElementRef, OnInit } from '@angular/core';
-import { Gallery, GalleryItem, GalleryRef, ThumbnailsPosition } from '@ngx-gallery/core';
+import {Gallery, GalleryItem, GalleryRef, ThumbnailsPosition} from '@ngx-gallery/core';
 
 import { GalleryService } from '../../../core/services/gallery.service';
+import { ImageModel } from '../../../core/models';
+import {IMasonryGalleryImage} from 'ngx-masonry-gallery';
 
 declare const $: any;
 
@@ -14,13 +16,6 @@ declare const $: any;
   styleUrls: ['./photo-gallery.component.scss', ],
 })
 export class PhotoGalleryComponent implements OnInit {
-
-  public photos: GalleryItem[];
-  public p: number;
-  public total: number;
-  public lightboxGalleryRef: GalleryRef;
-
-  public galleryId = 'myLightbox';
 
   constructor(private galleryService: GalleryService,
               public gallery: Gallery,
@@ -36,10 +31,19 @@ export class PhotoGalleryComponent implements OnInit {
     }
   }
 
+  public photos: Array<ImageModel>;
+  public galleryItems: Array<GalleryItem>;
+  public p: number;
+  public total: number;
+  public lightboxGalleryRef: GalleryRef;
+
+  public galleryId = 'myLightbox';
+
   ngOnInit() {
     this.photos = this.route.snapshot.data.photos.data;
     this.total = this.route.snapshot.data.photos.total;
-    this.gallery.ref().load(this.photos);
+    this.galleryItems = this.galleryService.getGalleryItem(this.photos);
+    this.gallery.ref().load(this.galleryItems);
     this.lightboxGalleryRef = this.gallery.ref(this.galleryId);
 
     this.gallery.ref().setConfig({
@@ -56,7 +60,7 @@ export class PhotoGalleryComponent implements OnInit {
       loadingStrategy: 'lazy',
       disableThumb: true,
     });
-    this.lightboxGalleryRef.load(this.photos);
+    this.lightboxGalleryRef.load(this.galleryItems);
     const galeryRef = this.gallery.ref('gallery');
 
     galeryRef.itemClick.subscribe(res => {
@@ -69,20 +73,18 @@ export class PhotoGalleryComponent implements OnInit {
     if (page === 1) {
       this.galleryService.getPhotos(page)
         .subscribe((data) => {
-          console.log(data);
           this.photos = data.data;
           this.p = page;
-          this.lightboxGalleryRef.load(this.photos);
+          this.lightboxGalleryRef.load(this.galleryService.getGalleryItem(data.data));
         }, (error) => {
           console.log(error);
         });
     } else {
       this.galleryService.getPhotos2(page)
         .subscribe((data) => {
-          console.log(data);
           this.photos = data.data;
           this.p = page;
-          this.lightboxGalleryRef.load(this.photos);
+          this.lightboxGalleryRef.load(this.galleryService.getGalleryItem(data.data));
         }, (error) => {
           console.log(error);
         });
