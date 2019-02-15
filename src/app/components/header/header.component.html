@@ -10,13 +10,13 @@
            id="navbarNav">
         <div class="row col-12 col-sm-10 mb-5 mb-lg-0 justify-content-center">
           <ul class="nav-menu" #navItems>
-          <li class="nav-item" (click)="changeMenu($event.path[1])"><a class="nav-link" routerLink="home">{{ 'header.home' | translate }}</a></li>
-          <li class="nav-item" (click)="changeMenu($event.path[1])"><a class="nav-link" routerLink="about">{{'header.about' | translate }}</a>
+          <li #home class="nav-item" (click)="changeMenu(home)"><a class="nav-link" routerLink="home">{{ 'header.home' | translate }}</a></li>
+          <li #about class="nav-item" (click)="changeMenu(about)"><a class="nav-link" routerLink="about">{{'header.about' | translate }}</a>
           </li>
-          <li class="nav-item" (click)="changeMenu($event.path[1])"><a class="nav-link" routerLink="blog">{{'header.blog' | translate }}</a></li>
-          <li class="nav-item" (click)="changeMenu($event.path[1])"><a class="nav-link" routerLink="contact">{{'header.contact' | translate }}</a>
+          <li #blog class="nav-item" (click)="changeMenu(blog)"><a class="nav-link" routerLink="blog">{{'header.blog' | translate }}</a></li>
+          <li #contact class="nav-item" (click)="changeMenu(contact)"><a class="nav-link" routerLink="contact">{{'header.contact' | translate }}</a>
           </li>
-          <li class="nav-item" (click)="changeMenu($event.path[1])"><a class="nav-link" routerLink="gallery">{{'header.gallery' | translate }}</a>
+          <li #gallery class="nav-item" (click)="changeMenu(gallery)"><a class="nav-link" routerLink="gallery">{{'header.gallery' | translate }}</a>
           </li>
         </ul>
         </div>
