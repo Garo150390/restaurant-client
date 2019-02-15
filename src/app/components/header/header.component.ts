@@ -44,9 +44,17 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     elem.classList.add('active');
   }
 
-  public switchLang(lang) {
+  public switchLang(elem: HTMLLIElement) {
+    const lang = elem.dataset.lang;
+    const childes = elem.parentElement.children;
     this.translate.use(lang);
     StorageService.saveItem('lang', lang);
+    elem.classList.add('active');
+    for (let i = 0; i < childes.length; i += 1 ) {
+      if (childes[i] !== elem) {
+        childes[i].classList.remove('active');
+      }
+    }
   }
 
 }

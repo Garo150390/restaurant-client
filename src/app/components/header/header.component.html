@@ -23,9 +23,9 @@
         <div class="row justify-content-lg-end col-12 offset-2 offset-lg-0 col-lg-4">
           <div>
             <ul class="nav text-white-50">
-              <li class="nav-item" (click)="switchLang('am')"><a class="nav-link px-1">Հայ</a></li>
-              <li class="nav-item" (click)="switchLang('ru')"><a class="nav-link px-1">Рус</a></li>
-              <li class="nav-item" (click)="switchLang('en')"><a class="nav-link pl-1">Eng</a></li>
+              <li #am class="nav-item" data-lang="am" (click)="switchLang(am)"><a class="nav-link px-1">Հայ</a></li>
+              <li #ru class="nav-item" data-lang="ru" (click)="switchLang(ru)"><a class="nav-link px-1">Рус</a></li>
+              <li #en class="nav-item" data-lang="en" (click)="switchLang(en)"><a class="nav-link pl-1">Eng</a></li>
             </ul>
           </div>
           <div class="relative">
