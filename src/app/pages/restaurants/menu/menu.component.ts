@@ -1,12 +1,29 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import { trigger, style, animate, transition } from '@angular/animations';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 
-import {MenuService} from '../../../core/services/menu.service';
-import {ProductsModel} from '../../../core/models';
+import { MenuService } from '../../../core/services/menu.service';
+import { ProductsModel } from '../../../core/models';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.scss']
+  styleUrls: ['./menu.component.scss'],
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({transform: 'scale(0.5)', opacity: 0}),
+        animate('.75s ease-out',
+          style({transform: 'scale(1)', opacity: 1})
+        )
+      ]),
+      transition(':leave', [
+        style({transform: 'scale(1)', opacity: 1, height: '*'}),
+        animate('.75s ease-out',
+          style({transform: 'scale(0.5)', opacity: 0})
+        )
+      ]),
+    ]),
+  ]
 })
 export class MenuComponent implements OnInit, AfterViewInit {
 
