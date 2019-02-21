@@ -1,19 +1,18 @@
 { "data": [
   {
     "thumb": "pizza-3007395_1920.jpg",
-    "name": "pizza-3007395_1920.jpg"
+    "name": "pizza-3007395_1920.jpg",
+    "description": "pizza"
   },
   {
     "thumb": "red-wine-2443699_1920.jpg",
-    "name": "red-wine-2443699_1920.jpg"
+    "name": "red-wine-2443699_1920.jpg",
+    "description": "red wine"
   },
   {
     "thumb": "restaurant-449952_1920.jpg",
-    "name": "restaurant-449952_1920.jpg"
-  },
-  {
-    "thumb": "wine-1761613_1920.jpg",
-    "name": "wine-1761613_1920.jpg"
+    "name": "restaurant-449952_1920.jpg",
+    "description": "restaurant"
   }
 ],
   "total": 13

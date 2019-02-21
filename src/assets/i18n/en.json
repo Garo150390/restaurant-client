@@ -8,5 +8,19 @@
   },
   "home": {
     "title": "Restaurants"
+  },
+  "not_found": {
+    "text": "Oops, The Page you are looking for can't be found!",
+    "text2": "Return To Homepage"
+  },
+  "order" : {
+    "not_order": "Order list is empty",
+    "image": "image",
+    "name": "name",
+    "count": "count",
+    "price": "price",
+    "total": "total",
+    "total_price": "TOTAL PRICE",
+    "btn": "order products"
   }
 }

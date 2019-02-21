@@ -8,6 +8,7 @@ import { OrderModalComponent } from './order-modal/order-modal.component';
 import { ValidateService } from '../../core/services/validate.service';
 import { SharedModule } from '../../shared/shared.module';
 import { OrderComponent } from './order.component';
+import {TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { OrderComponent } from './order.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    TranslateModule
   ],
   exports: [
     OrderModalComponent,

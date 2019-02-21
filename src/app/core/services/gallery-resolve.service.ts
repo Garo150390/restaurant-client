@@ -1,7 +1,5 @@
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { ImageItem } from '@ngx-gallery/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 
 import { GalleryService } from './gallery.service';

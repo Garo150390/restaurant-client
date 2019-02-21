@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {NgbCalendar, NgbDate, NgbDatepickerConfig, NgbTimepickerConfig} from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerConfig, NgbTimepickerConfig} from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { ReservationService} from '../../../../core/services/reservation.service';
 import { ValidateService } from '../../../../core/services/validate.service';
 
-declare var $: any;
+declare const $: any;
 
 @Component({
   selector: 'app-make-reservation-form',
