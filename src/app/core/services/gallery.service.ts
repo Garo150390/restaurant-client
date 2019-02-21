@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { ImageItem} from '@ngx-gallery/core';
+import { ImageItem } from '@ngx-gallery/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { environment } from '../../../environments/environment';

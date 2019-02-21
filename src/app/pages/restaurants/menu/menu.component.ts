@@ -1,8 +1,20 @@
-import { trigger, style, animate, transition } from '@angular/animations';
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import {
+  trigger,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
+import {
+  AfterViewInit,
+  Component,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 
-import { MenuService } from '../../../core/services/menu.service';
 import { ProductsModel } from '../../../core/models';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-menu',
@@ -25,45 +37,46 @@ import { ProductsModel } from '../../../core/models';
     ]),
   ]
 })
-export class MenuComponent implements OnInit, AfterViewInit {
+export class MenuComponent implements AfterViewInit, OnChanges {
 
-  private products: Array<ProductsModel>;
+  @Input()
+  public products: Array<ProductsModel>;
+
   public productList: Array<ProductsModel>;
-  public menu = ['breakfast', 'lunch', 'dinner', 'budget-meal', 'buffet'];
+  public menu: Set<string>;
 
   @ViewChild('filters')
   private filters;
 
-  private childrens;
+  private childes;
 
-  constructor(private menuService: MenuService) {
+  constructor() {
+    this.menu = new Set();
   }
 
-  ngOnInit() {
-    this.menuService.getProducts()
-      .subscribe((products) => {
-        this.products = products;
-        this.productList = this.products;
-      }, (error) => {
-        console.log(error);
+  ngOnChanges(changes: SimpleChanges): void {
+    this.products.forEach((product) => {
+      product.categories.forEach((category) => {
+        this.menu.add(category);
       });
+      product.image = `${environment.apiEndPoint}/${product.image}`;
+    });
+    this.productList = this.products;
   }
 
   ngAfterViewInit(): void {
-    this.childrens = this.filters.nativeElement.children;
+    this.childes = this.filters.nativeElement.children;
   }
 
   public changeMenu(elem) {
-    for (let i = 0; i < this.childrens.length; i += 1) {
-      this.childrens[i].classList.remove('active');
+    for (let i = 0; i < this.childes.length; i += 1) {
+      this.childes[i].classList.remove('active');
     }
     elem.classList.add('active');
     if (elem.dataset.filter === '*') {
       return this.productList = this.products;
     }
-    this.productList = this.products.filter((product) => {
-      return product.category === elem.dataset.filter;
-    });
+    this.productList = this.products.filter((product) => product.categories.includes(elem.dataset.filter));
   }
 
 }

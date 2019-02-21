@@ -27,17 +27,17 @@ export class ProductsComponent implements OnInit {
 
   public addToOrder(product: ProductsModel) {
     const prod: OrderProductsModel = {
-      id: product.id,
-      title: product.title,
+      id: product._id,
+      title: product.name,
       count: 1,
       price: parseInt(product.price, 10),
-      img: product.img
+      img: product.image,
     };
     this.orderService.addToOrders(prod);
   }
 
   public open() {
-    this.album[0] = { src: `assets/images/products/${this.product.img}` };
+    this.album[0] = { src: `${this.product.image}` };
     this.lightbox.open(this.album, 0);
   }
 

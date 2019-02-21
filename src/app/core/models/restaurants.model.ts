@@ -1,3 +1,5 @@
+import {ProductsModel} from './products.model';
+
 export interface RestaurantsModel {
   id: number;
   name: string;
@@ -7,4 +9,5 @@ export interface RestaurantsModel {
   address: string;
   email: string;
   tel: string;
+  products: [ProductsModel];
 }
