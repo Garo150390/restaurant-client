@@ -2,11 +2,11 @@
   <table class="table table-hover">
     <thead>
     <tr>
-      <th scope="col-2">image</th>
-      <th scope="col">Item name</th>
-      <th scope="col">Count</th>
-      <th scope="col-2">price</th>
-      <th scope="col">Total</th>
+      <th scope="col-2">{{ 'order.image' | translate }}</th>
+      <th scope="col">{{ 'order.name' | translate}}</th>
+      <th scope="col">{{ 'order.count' | translate}}</th>
+      <th scope="col-2">{{ 'order.price' | translate}}</th>
+      <th scope="col">{{ 'order.total' | translate}}</th>
     </tr>
     </thead>
     <tbody>
@@ -28,7 +28,7 @@
     </tr>
     <tr>
       <td colspan="3"></td>
-      <td><p class="mb-0 text-danger">TOTAL PRICE</p></td>
+      <td><p class="mb-0 text-danger">{{ 'order.total_price' | translate}}</p></td>
       <td class="text-italic">{{price}}</td>
       <td></td>
     </tr>
@@ -38,7 +38,7 @@
     <button type="button" class="btn btn-info"
             data-toggle="modal" data-target="#orderProducts"
             (click)="sendData()">
-      order products
+      {{ 'order.btn' | translate}}
     </button>
   </div>
 </div>

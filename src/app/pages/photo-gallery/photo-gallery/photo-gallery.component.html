@@ -13,10 +13,6 @@
     <div class="gallery" id="gallery">
       <div class="mb-3 pics animation"
            *ngFor="let image of photos | paginate: { itemsPerPage: 9, currentPage: p, totalItems: total }; let i = index">
-       <!-- <img class="img-fluid" alt="Card image cap"
-             [src]="item.data.thumb"
-             [lightbox]="i"
-             [gallery]="galleryId">-->
         <app-photo [image]="image"
                    [lightbox]="i"
                    [gallery]="galleryId">

@@ -6,7 +6,6 @@ import {Gallery, GalleryItem, GalleryRef, ThumbnailsPosition} from '@ngx-gallery
 
 import { GalleryService } from '../../../core/services/gallery.service';
 import { ImageModel } from '../../../core/models';
-import {IMasonryGalleryImage} from 'ngx-masonry-gallery';
 
 declare const $: any;
 
