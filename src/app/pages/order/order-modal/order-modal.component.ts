@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { ValidatorHelper } from '../../../core/helpers/validator.helper';
@@ -10,7 +10,7 @@ import { StorageService } from '../../../core/services/storage.service';
   templateUrl: './order-modal.component.html',
   styleUrls: ['./order-modal.component.scss']
 })
-export class OrderModalComponent implements OnInit {
+export class OrderModalComponent {
 
   public orderForms: FormGroup;
   public pay: boolean;
@@ -27,9 +27,6 @@ export class OrderModalComponent implements OnInit {
       ]),
       'address': new FormControl('', [])
     });
-  }
-
-  ngOnInit() {
   }
 
   public checked(data: boolean) {

@@ -55,13 +55,15 @@ export class MenuComponent implements AfterViewInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.products.forEach((product) => {
-      product.categories.forEach((category) => {
-        this.menu.add(category);
+    if (this.products) {
+      this.products.forEach((product) => {
+        product.categorys.forEach((category) => {
+          this.menu.add(category);
+        });
+        product.image = `${environment.apiEndPoint}/${product.image}`;
       });
-      product.image = `${environment.apiEndPoint}/${product.image}`;
-    });
-    this.productList = this.products;
+      this.productList = this.products;
+    }
   }
 
   ngAfterViewInit(): void {
@@ -76,7 +78,7 @@ export class MenuComponent implements AfterViewInit, OnChanges {
     if (elem.dataset.filter === '*') {
       return this.productList = this.products;
     }
-    this.productList = this.products.filter((product) => product.categories.includes(elem.dataset.filter));
+    this.productList = this.products.filter((product) => product.categorys.includes(elem.dataset.filter));
   }
 
 }

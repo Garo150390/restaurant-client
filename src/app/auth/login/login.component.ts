@@ -1,5 +1,5 @@
 import { Router} from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { ValidatorHelper } from '../../core/helpers/validator.helper';
@@ -13,7 +13,7 @@ import { UserResponse } from '../../core/models';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   public loginForm: FormGroup;
 
@@ -32,9 +32,6 @@ export class LoginComponent implements OnInit {
         Validators.maxLength(20)
       ])
     });
-  }
-
-  ngOnInit() {
   }
 
   public validateAllFormFields(formGroup: FormGroup): void {

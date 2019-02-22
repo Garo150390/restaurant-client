@@ -1,5 +1,5 @@
+import { Component, Input } from '@angular/core';
 import { Lightbox, LightboxConfig } from 'ngx-lightbox';
-import { Component, Input, OnInit } from '@angular/core';
 
 import { OrderProductsModel, ProductsModel } from '../../../../core/models';
 import { OrderService } from '../../../../core/services/order.service';
@@ -9,7 +9,7 @@ import { OrderService } from '../../../../core/services/order.service';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent {
 
   @Input()
   public product: ProductsModel;
@@ -20,9 +20,6 @@ export class ProductsComponent implements OnInit {
               private lightbox: Lightbox, private lightBoxConfig: LightboxConfig) {
     lightBoxConfig.centerVertically = true;
     lightBoxConfig.fitImageInViewPort = false;
-  }
-
-  ngOnInit() {
   }
 
   public addToOrder(product: ProductsModel) {

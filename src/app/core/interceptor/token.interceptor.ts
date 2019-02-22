@@ -1,7 +1,7 @@
-import {Observable} from 'rxjs';
-import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
+import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
 import {
   HttpEvent,
   HttpInterceptor,
