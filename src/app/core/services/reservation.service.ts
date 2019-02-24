@@ -1,16 +1,23 @@
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 
 import { environment } from '../../../environments/environment';
-
 
 @Injectable()
 export class ReservationService {
 
-  constructor(private http: HttpClient) { }
+  public static request: any = {};
 
-  public getTables(): Observable<any> {
-    return this.http.get<any>(`${environment.localEndPoint}tables.json`, );
+  constructor(private http: HttpClient) {
+  }
+
+  public checkFreeTable(query): Observable<any> {
+    const params = new HttpParams().set('check', 'true');
+    return this.http.post<any>(`${environment.apiEndPoint}/tables/reservation`, query, {params});
+  }
+
+  public bookingTable(query): Observable<any> {
+    return this.http.post<any>(`${environment.apiEndPoint}/tables/reservation`, query);
   }
 }

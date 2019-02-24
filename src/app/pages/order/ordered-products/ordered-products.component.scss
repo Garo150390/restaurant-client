@@ -1,10 +1,15 @@
 .table {
   tr {
     td {
+      vertical-align : middle;
+      text-align: center;
       img {
         width: 100px;
         height: 100px;
       }
+    }
+    th {
+      text-align: center;
     }
   }
 }

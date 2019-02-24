@@ -6,7 +6,7 @@ import { RestaurantsService } from './services/restaurants.service';
 import { TokenInterceptor } from './interceptor/token.interceptor';
 import { AuthGuardService } from './services/auth-guard.service';
 import { StorageService } from './services/storage.service';
-import { OrderService } from './services/order.service';
+import { OrderHelperService } from './services/orderHelper.service';
 import { LoginService } from './services/login.service';
 
 @NgModule({
@@ -23,7 +23,7 @@ import { LoginService } from './services/login.service';
     },
     RestaurantsService,
     StorageService,
-    OrderService,
+    OrderHelperService,
     LoginService,
     AuthGuardService,
   ]

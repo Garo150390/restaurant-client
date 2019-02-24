@@ -1,7 +1,7 @@
 import { TranslateService } from '@ngx-translate/core';
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
-import { OrderService } from '../../core/services/order.service';
+import { OrderHelperService } from '../../core/services/orderHelper.service';
 import { StorageService } from '../../core/services/storage.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   private items: HTMLCollection;
   public count: number;
 
-  constructor(private orderService: OrderService,
+  constructor(private orderService: OrderHelperService,
               private translate: TranslateService) {
     if (StorageService.getData('orders')) {
       this.count = JSON.parse(StorageService.getData('orders')).length;
@@ -44,9 +44,17 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     elem.classList.add('active');
   }
 
-  public switchLang(lang) {
+  public switchLang(elem: HTMLLIElement) {
+    const lang = elem.dataset.lang;
+    const childes = elem.parentElement.children;
     this.translate.use(lang);
     StorageService.saveItem('lang', lang);
+    elem.classList.add('active');
+    for (let i = 0; i < childes.length; i += 1 ) {
+      if (childes[i] !== elem) {
+        childes[i].classList.remove('active');
+      }
+    }
   }
 
 }

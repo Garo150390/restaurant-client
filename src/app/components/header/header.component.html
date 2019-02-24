@@ -10,22 +10,22 @@
            id="navbarNav">
         <div class="row col-12 col-sm-10 mb-5 mb-lg-0 justify-content-center">
           <ul class="nav-menu" #navItems>
-          <li class="nav-item" (click)="changeMenu($event.path[1])"><a class="nav-link" routerLink="home">{{ 'header.home' | translate }}</a></li>
-          <li class="nav-item" (click)="changeMenu($event.path[1])"><a class="nav-link" routerLink="about">{{'header.about' | translate }}</a>
+          <li #home class="nav-item" (click)="changeMenu(home)"><a class="nav-link" routerLink="home">{{ 'header.home' | translate }}</a></li>
+          <li #about class="nav-item" (click)="changeMenu(about)"><a class="nav-link" routerLink="about">{{'header.about' | translate }}</a>
           </li>
-          <li class="nav-item" (click)="changeMenu($event.path[1])"><a class="nav-link" routerLink="blog">{{'header.blog' | translate }}</a></li>
-          <li class="nav-item" (click)="changeMenu($event.path[1])"><a class="nav-link" routerLink="contact">{{'header.contact' | translate }}</a>
+          <li #blog class="nav-item" (click)="changeMenu(blog)"><a class="nav-link" routerLink="blog">{{'header.blog' | translate }}</a></li>
+          <li #contact class="nav-item" (click)="changeMenu(contact)"><a class="nav-link" routerLink="contact">{{'header.contact' | translate }}</a>
           </li>
-          <li class="nav-item" (click)="changeMenu($event.path[1])"><a class="nav-link" routerLink="gallery">{{'header.gallery' | translate }}</a>
+          <li #gallery class="nav-item" (click)="changeMenu(gallery)"><a class="nav-link" routerLink="gallery">{{'header.gallery' | translate }}</a>
           </li>
         </ul>
         </div>
         <div class="row justify-content-lg-end col-12 offset-2 offset-lg-0 col-lg-4">
           <div>
             <ul class="nav text-white-50">
-              <li class="nav-item" (click)="switchLang('am')"><a class="nav-link px-1">Հայ</a></li>
-              <li class="nav-item" (click)="switchLang('ru')"><a class="nav-link px-1">Рус</a></li>
-              <li class="nav-item" (click)="switchLang('en')"><a class="nav-link pl-1">Eng</a></li>
+              <li #am class="nav-item" data-lang="am" (click)="switchLang(am)"><a class="nav-link px-1">Հայ</a></li>
+              <li #ru class="nav-item" data-lang="ru" (click)="switchLang(ru)"><a class="nav-link px-1">Рус</a></li>
+              <li #en class="nav-item" data-lang="en" (click)="switchLang(en)"><a class="nav-link pl-1">Eng</a></li>
             </ul>
           </div>
           <div class="relative">

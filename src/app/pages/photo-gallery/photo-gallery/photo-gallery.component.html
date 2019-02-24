@@ -1,22 +1,31 @@
-<app-banner [name]="'Gallery'"></app-banner>
+<app-banner [name]="'gallery'"></app-banner>
 
-<section class="gallery-block compact-gallery">
-  <div class="container">
-    <div class="row" *ngIf="photos?.length">
-      <div class="col-4 my-2 p-0 pl-3"
-           *ngFor="let item of photos | paginate: { itemsPerPage: 9, currentPage: p, totalItems: total }; let i = index">
-        <div class="img_size">
-          <app-photo [src]="item.data.thumb"
-                     [lightbox]="i"
-                     [gallery]="galleryId"
-          ></app-photo>
-        </div>
-
+<div class="container my-5">
+  <ul class="filter-wrap filters col-lg-12 no-padding">
+    <li class="active filter" data-filter="all">All Menu</li>
+    <li class="waves-effect filter" data-filter=".breakfast">Breakfast</li>
+    <li class="waves-effect filter" data-filter=".lunch">Lunch</li>
+    <li class="waves-effect filter" data-filter=".dinner">Dinner</li>
+    <li class="waves-effect filter" data-filter=".budget-meal">Budget Meal</li>
+    <li class="waves-effect filter" data-filter=".buffet">Buffet</li>
+  </ul>
+  <div class="col-lg-12 mx-auto mt-5">
+    <div class="gallery" id="gallery">
+      <div class="mb-3 pics animation"
+           *ngFor="let image of photos | paginate: { itemsPerPage: 9, currentPage: p, totalItems: total }; let i = index">
+        <app-photo [image]="image"
+                   [lightbox]="i"
+                   [gallery]="galleryId">
+        </app-photo>
       </div>
     </div>
   </div>
-</section>
 
-<pagination-controls class="text-lg-center" (pageChange)="changePage($event)"></pagination-controls>
+  <div class="mt-5">
+    <pagination-controls class="text-lg-center"
+                         (pageChange)="changePage($event)">
+    </pagination-controls>
+  </div>
+</div>
 
 <div id="content-container" class="fixed-top" appCdkOverlayContainer></div>

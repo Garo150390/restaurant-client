@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { StorageService } from '../../core/services/storage.service';
-import { OrderService } from '../../core/services/order.service';
-import { OrderProductsModel } from '../../core/models';
+import { OrderHelperService } from '../../core/services/orderHelper.service';
+import { OrderProductModel } from '../../core/models';
 
 @Component({
   selector: 'app-order',
@@ -11,17 +11,17 @@ import { OrderProductsModel } from '../../core/models';
 })
 export class OrderComponent implements OnInit {
 
-  public products: Array<OrderProductsModel> = [];
+  public products: Array<OrderProductModel> = [];
 
-  constructor(private orderService: OrderService) {
+  constructor() {
   }
 
   ngOnInit() {
     if (StorageService.getData('orders')) {
-      this.orderService.orders = JSON.parse(StorageService.getData('orders'));
+      OrderHelperService.orders = JSON.parse(StorageService.getData('orders'));
     }
 
-    this.products = this.orderService.orders;
+    this.products = OrderHelperService.orders;
   }
 
 }

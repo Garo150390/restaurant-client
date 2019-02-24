@@ -1,62 +1,27 @@
-.frame {
-  height: 100%;
-  overflow: hidden;
-}
+@import '~src/assets/scss/core/variables';
 
-.item{
-  overflow: hidden;
-  margin-bottom: 0;
-  background: black;
-  opacity: 1;
-  height: 100%;
-}
-
-.image{
-  transition: 0.8s ease;
-  height: inherit;
-}
-
-.info{
+.thumb {
   position: relative;
-  display: inline-block;
 }
 
-.description{
-  display: grid;
+.thumb div {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  color: #fff;
-  font-size: 17px;
-  line-height: 18px;
   width: 100%;
-  padding: 15px 10px;
-  opacity: 1;
-  transition: 0.8s ease;
-  text-align: center;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.39));
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color:rgba(180,112,14, .8);
+  color: #fff;
+  opacity:0;
+  transition: 0.5s;
+}
+.thumb img {
+  display: block;
+  width:100%
 }
 
-.description-heading{
-  font-size: 1em;
-  font-weight: bold;
-}
-
-.description-body{
-  font-size: 0.8em;
-  margin-top: 10px;
-  font-weight: 300;
-}
-
-@media (min-width: 576px) {
-  .item a:hover .description {
-    opacity: 1;
-  }
-
-  .zoom-on-hover:hover .image {
-    transform: scale(1.3);
-    opacity: 0.7;
-    overflow: hidden;
-  }
+.thumb:hover div {
+  opacity:1;
+  cursor:pointer;
+  transition: all 1s;
 }

@@ -18,8 +18,9 @@
     </ul>
 
     <div class="filters-content">
-      <div class="row grid show">
-        <div class="col-md-3 p-2" *ngFor="let product of productList">
+      <div class="row grid">
+        <div class="col-md-3 p-2" *ngFor="let product of productList"
+             [@fadeInOut]="'show'">
           <app-products [product]="product"></app-products>
         </div>
       </div>

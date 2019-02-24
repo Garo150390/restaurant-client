@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { OrderProductsModel } from '../../../core/models';
+import { OrderHelperService } from '../../../core/services/orderHelper.service';
 import { StorageService } from '../../../core/services/storage.service';
-import { OrderService } from '../../../core/services/order.service';
+import { OrderProductModel } from '../../../core/models';
 
 @Component({
   selector: 'app-ordered-products',
@@ -12,19 +12,19 @@ import { OrderService } from '../../../core/services/order.service';
 export class OrderedProductsComponent implements OnInit {
 
   @Input()
-  public products: Array<OrderProductsModel>;
+  public products: Array<OrderProductModel>;
 
   public price: number;
 
-  constructor(private orderService: OrderService) { }
+  constructor(private orderHelperService: OrderHelperService) { }
 
   ngOnInit() {
     if (this.products.length) {
-      this.totalePrice();
+      this.totalPrice();
     }
   }
 
-  private totalePrice() {
+  private totalPrice() {
     const price = this.products.map((x) => {
       return x.price * x.count;
     });
@@ -54,12 +54,8 @@ export class OrderedProductsComponent implements OnInit {
     StorageService.clearItem('orders');
     StorageService.saveItem('orders', JSON.stringify(this.products));
     if (this.products.length) {
-      this.totalePrice();
+      this.totalPrice();
     }
-    this.orderService.changeDetect();
-  }
-
-  public sendData() {
-    console.log(this.products);
+    this.orderHelperService.changeBasketProductsCount();
   }
 }

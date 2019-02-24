@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   apiEndPoint: 'http://localhost:3000',
   storageKey: 'restaurant-api: ',
-  localEndPoint: 'assets/json/',
+  localEndPoint: 'assets/json',
 };
 
 /*

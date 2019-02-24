@@ -1,14 +1,15 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {RestaurantsService} from '../../../core/services/restaurants.service';
-import {RestaurantsModel} from '../../../core/models';
+
+import { RestaurantsService } from '../../../core/services/restaurants.service';
+import { RestaurantsModel } from '../../../core/models';
 
 @Component({
   selector: 'app-restauran',
-  templateUrl: './restauran.component.html',
-  styleUrls: ['./restauran.component.scss']
+  templateUrl: './restaurant.component.html',
+  styleUrls: ['./restaurant.component.scss']
 })
-export class RestauranComponent implements OnInit {
+export class RestaurantComponent implements OnInit {
 
   public restaurant: RestaurantsModel;
 

@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "~bootstrap/scss/bootstrap";
 @import "~src/assets/scss/core/variables";
 @import "~src/assets/scss/core/mixins";
@@ -7,3 +8,6 @@
 @import "~src/assets/scss/core/flexbox";
 @import "~src/assets/scss/core/reset";
 @import "~src/assets/scss/main";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

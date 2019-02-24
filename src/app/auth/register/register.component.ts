@@ -20,6 +20,7 @@ export class RegisterComponent implements OnInit {
   constructor(private userService: UserService,
               private authService: AuthService,
               private router: Router) {
+
     this.registerForm = new FormGroup({
       'name': new FormControl('', [
         Validators.required,
@@ -50,7 +51,6 @@ export class RegisterComponent implements OnInit {
         Validators.minLength(6),
         Validators.maxLength(20)
       ]),
-
       'city': new FormControl('', [
         Validators.required,
         Validators.pattern(ValidatorHelper.nameRegEx)
@@ -92,22 +92,21 @@ export class RegisterComponent implements OnInit {
 
   submitRegisterForm() {
     if (this.registerForm.invalid) {
-      this.validateAllFormFields(this.registerForm);
-    } else {
-      this.userService.createUser(this.registerForm.value)
-        .subscribe((user) => {
-          console.log(user);
-          this.authService.currentUserSubject.next(user.user);
-          StorageService.saveItem('accessToken', user.tokens.accessToken);
-          StorageService.saveItem('refreshToken', user.tokens.refreshToken);
-          this.router.navigateByUrl('/');
-        }, (err) => {
-          console.log(err);
-          Object.keys(err.error).forEach((key) => {
-            this.registerForm.controls[key].setErrors({'incorrect': true});
-          });
-        });
+      return this.validateAllFormFields(this.registerForm);
     }
+    this.userService.createUser(this.registerForm.value)
+      .subscribe((user) => {
+        console.log(user);
+        this.authService.currentUserSubject.next(user.user);
+        StorageService.saveItem('accessToken', user.tokens.accessToken);
+        StorageService.saveItem('refreshToken', user.tokens.refreshToken);
+        this.router.navigateByUrl('/');
+      }, (err) => {
+        console.log(err);
+        Object.keys(err.error).forEach((key) => {
+          this.registerForm.controls[key].setErrors({'incorrect': true});
+        });
+      });
   }
 
 }

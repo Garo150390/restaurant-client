@@ -1,21 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { ValidatorHelper } from '../../../core/helpers/validator.helper';
 import { ValidateService } from '../../../core/services/validate.service';
+import { ValidatorHelper } from '../../../core/helpers/validator.helper';
 import { StorageService } from '../../../core/services/storage.service';
+import { OrderedProductModel, OrderModel } from '../../../core/models';
+import {OrderService} from '../../../core/services/order.service';
 
 @Component({
   selector: 'app-order-modal',
   templateUrl: './order-modal.component.html',
   styleUrls: ['./order-modal.component.scss']
 })
-export class OrderModalComponent implements OnInit {
+export class OrderModalComponent {
 
   public orderForms: FormGroup;
   public pay: boolean;
 
-  constructor() {
+  constructor(private orderService: OrderService) {
     this.orderForms = new FormGroup({
       'name': new FormControl('', [
         Validators.required,
@@ -29,9 +31,6 @@ export class OrderModalComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-  }
-
   public checked(data: boolean) {
     this.pay = data;
   }
@@ -42,22 +41,21 @@ export class OrderModalComponent implements OnInit {
 
   public sendOrderForms() {
     if (this.orderForms.invalid) {
-      ValidateService.validateAllFormFields(this.orderForms);
-    } else {
-      const data = JSON.parse(StorageService.getData('orders'));
-      const products = data.map((prod) => {
-        const { id: product_id, count: product_count, price } = prod;
-        const product_total = parseInt(price, 10) * parseInt(product_count, 10);
-        return {product_id, product_total, product_count};
-      });
-      const delivery_total_price = products.map((prod) => {
-        return prod.product_total;
-      }).reduce((x, y) => {
-        return x + y;
-      });
-      const request = {...this.orderForms.getRawValue(), products, delivery_total_price };
-      console.log(request);
+      return ValidateService.validateAllFormFields(this.orderForms);
     }
+    const localOrders = JSON.parse(StorageService.getData('orders'));
+    const products: OrderedProductModel = localOrders.map((prod) => {
+      const { id: productId, count: quantity } = prod;
+      return { productId, quantity };
+    });
+
+    const order: OrderModel = { ...this.orderForms.getRawValue(), products, method: 'cash' };
+    this.orderService.createOrder(order)
+      .subscribe((data) => {
+        console.log(data);
+      }, (err) => {
+        console.log(err);
+      });
   }
 
 }

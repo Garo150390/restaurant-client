@@ -1,11 +1,11 @@
 <div>
   <div class="card single-menu">
-    <img src="assets/images/products/{{product?.img}}" alt=""
+    <img [src]="product?.image" alt=""
          style="height: 10rem;"
          class="card-img-top pointer"
          (click)="open()">
     <div class="card-body">
-      <h3 class="card-title pointer">{{product?.title}}</h3>
+      <h3 class="card-title pointer">{{product?.name}}</h3>
       <div class="row">
         <h4 class="price ml-3">{{product?.price}}</h4>
         <i class="icon-basket ml-auto mr-3 pointer btn"
