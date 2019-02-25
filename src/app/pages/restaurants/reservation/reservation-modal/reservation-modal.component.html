@@ -2,73 +2,58 @@
       (ngSubmit)="submitReservationForm()">
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="name">Name</label>
-      <input formControlName="name" type="text" name="name"
-             (keyup)="alertValidate(name)" #name
-             class="form-control" id="name" placeholder="Name">
-      <small *ngIf="(reservationForms.controls['name'].dirty &&
-        reservationForms.controls['name'].hasError('required')) ||
-         (reservationForms.controls['name'].touched &&
-         reservationForms.controls['name'].hasError('required'))">
-        Name is required
-      </small>
-      <small *ngIf="reservationForms.controls['name'].dirty
-           && reservationForms.controls['name'].hasError('pattern')">
-        Invalid name
-      </small>
+      <mat-form-field class="">
+        <input matInput placeholder="name" [formControl]="name">
+        <mat-error *ngIf="name.hasError('pattern') && name.dirty">
+          Please enter a valid name
+        </mat-error>
+        <mat-error *ngIf="name.hasError('required')">
+          Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
     </div>
     <div class="form-group col-md-6">
-      <label for="surname">SurName</label>
-      <input formControlName="surname" type="text" name="surname"
-             class="form-control" id="surname" placeholder="Surname">
+      <mat-form-field class="">
+        <input matInput placeholder="surname" [formControl]="surname">
+        <mat-error *ngIf="surname.hasError('pattern') && surname.dirty">
+          Please enter a valid surname
+        </mat-error>
+      </mat-form-field>
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="phone">Phone number</label>
-      <input formControlName="phone" type="text" name="phone"
-             (keyup)="alertValidate(phone)" #phone
-             class="form-control" id="phone" placeholder="Phone number">
-      <small *ngIf="(reservationForms.controls['phone'].dirty &&
-        reservationForms.controls['phone'].hasError('required')) ||
-         (reservationForms.controls['phone'].touched &&
-         reservationForms.controls['phone'].hasError('required'))">
-        Phone is required
-      </small>
+      <mat-form-field class="">
+        <input matInput placeholder="phone" [formControl]="phone">
+        <mat-error *ngIf="phone.hasError('pattern') && phone.dirty">
+          Phone number must be 055-55-55-55 or (374)-055-55-55-55
+        </mat-error>
+        <mat-error *ngIf="phone.hasError('required')">
+          Phone is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
     </div>
     <div class="form-group col-md-6">
-      <label for="email">Email</label>
-      <input formControlName="email" type="email" name="email"
-             (keyup)="alertValidate(email)" #email
-             class="form-control" id="email" placeholder="Email">
-      <small *ngIf="(reservationForms.controls['email'].dirty &&
-        reservationForms.controls['email'].hasError('required')) ||
-         (reservationForms.controls['email'].touched &&
-         reservationForms.controls['email'].hasError('required'))">
-        Email is required
-      </small>
-      <small *ngIf="reservationForms.controls['email'].dirty
-           && reservationForms.controls['email'].hasError('pattern')">
-        Invalid email
-      </small>
+      <mat-form-field class="">
+        <input matInput placeholder="Email" [formControl]="email">
+        <mat-error *ngIf="email.hasError('pattern') && email.dirty">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="email.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
     </div>
   </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="select">Select Event</label>
-      <select id="select" formControlName="occasions" class="form-select form-control">
-        <option *ngFor="let feast of celebrations"
-                [ngValue]="feast.value">{{feast.name}}
-        </option>
-      </select>
-    </div>
-    <div class="form-group col-md-6">
-      <label for="textArea">Add a special request</label>
-      <textarea id="textArea" formControlName="message" name="message"
-                class="form-control" rows="2"
-                title="Add a special request">
-      </textarea>
-    </div>
+  <div class="form-row justify-content-around">
+    <mat-form-field>
+      <mat-select [formControl]="occasions" placeholder="Select Event">
+        <mat-option *ngFor="let feast of celebrations" [value]="feast.value">{{feast.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="col-md-6">
+      <textarea formControlName="message" matInput rows="2" placeholder="Add a special request"></textarea>
+    </mat-form-field>
   </div>
-  <button type="submit" class="btn btn-primary">Reservation</button>
+  <button type="submit" mat-raised-button color="primary">Reservation</button>
 </form>

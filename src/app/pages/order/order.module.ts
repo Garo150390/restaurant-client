@@ -10,7 +10,6 @@ import { ValidateService } from '../../core/services/validate.service';
 import { OrderService } from '../../core/services/order.service';
 import { SharedModule } from '../../shared/shared.module';
 import { OrderComponent } from './order.component';
-import {TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
   declarations: [

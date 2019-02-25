@@ -1,10 +1,13 @@
-import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogRef
+} from '@angular/material';
+import {Component, Inject, OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { ValidatorHelper } from '../../../../core/helpers/validator.helper';
-import { ValidateService } from '../../../../core/services/validate.service';
 import { ReservationService } from '../../../../core/services/reservation.service';
+import { ValidateService } from '../../../../core/services/validate.service';
+import { ValidatorHelper } from '../../../../core/helpers/validator.helper';
 
 @Component({
   selector: 'app-reservation-modal',
@@ -20,8 +23,6 @@ export class ReservationModalComponent implements OnInit {
   public occasions: FormControl;
   public message: FormControl;
   public reservationForms: FormGroup;
-  private restaurantId: object;
-
   public celebrations = [
     {value: 'birthday', name: 'Birthday'},
     {value: 'anniversary', name: 'Anniversary'},
@@ -31,11 +32,11 @@ export class ReservationModalComponent implements OnInit {
   ];
 
   constructor(private reservationService: ReservationService,
-              private route: ActivatedRoute) {
+              public dialogRef: MatDialogRef<ReservationModalComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   ngOnInit() {
-    this.restaurantId = this.route.snapshot.params.id;
     this.createFormControls();
     this.createForm();
   }
@@ -71,10 +72,6 @@ export class ReservationModalComponent implements OnInit {
     });
   }
 
-  public alertValidate(event) {
-    ValidateService.alertValidate(event, this.reservationForms);
-  }
-
   public submitReservationForm() {
     if (this.reservationForms.invalid) {
       ValidateService.validateAllFormFields(this.reservationForms);
@@ -83,8 +80,7 @@ export class ReservationModalComponent implements OnInit {
       const reservationFormValues = this.reservationForms.getRawValue();
       ReservationService.request = {
         ...orderedData,
-        ...reservationFormValues,
-        restaurantId: this.restaurantId
+        ...reservationFormValues
       };
       this.reservationService.bookingTable(ReservationService.request)
         .subscribe((data) => {
