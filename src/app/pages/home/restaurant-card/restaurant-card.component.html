@@ -1,9 +1,9 @@
-<div class="single-service">
+<div class="single-service m-2 no-gutters">
   <div routerLink="/restaurants/{{restaurant._id}}" class="thumb col-12">
-    <img [src]="restaurant.avatar" alt="">
-  </div>
-  <div>
-    <a class="text-center"><h4>{{restaurant.name}}</h4></a>
-    <p>{{restaurant.description}}</p>
+    <img [src]="restaurant.avatar" alt="restaurant image">
+    <div class="d-flex flex-column justify-content-center align-items-center">
+      <a class="text-center"><h4>{{restaurant.name | uppercase}}</h4></a>
+      <p class="text-center px-5">{{restaurant.description}}</p>
+    </div>
   </div>
 </div>

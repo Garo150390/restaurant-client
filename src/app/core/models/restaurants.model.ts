@@ -1,7 +1,7 @@
 import {ProductsModel} from './products.model';
 
 export interface RestaurantsModel {
-  id: number;
+  _id: number;
   name: string;
   type: string;
   description: string;
