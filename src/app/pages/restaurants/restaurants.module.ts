@@ -21,6 +21,7 @@ import { ReservationModalComponent } from './reservation/reservation-modal/reser
 import { SharedModule } from '../../shared/shared.module';
 import { MenuComponent } from './menu/menu.component';
 import { MaterialModule } from './material.module';
+import { InfoModalComponent } from './reservation/reservation-modal/info-modal/info-modal.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { MaterialModule } from './material.module';
     ReservationComponent,
     ReservationModalComponent,
     MakeReservationFormComponent,
-    TableBadgeComponent
+    TableBadgeComponent,
+    InfoModalComponent
   ],
   imports: [
     CommonModule,
@@ -42,7 +44,6 @@ import { MaterialModule } from './material.module';
     ReactiveFormsModule,
     NgbModule,
     LightboxModule,
-
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} },
@@ -51,6 +52,10 @@ import { MaterialModule } from './material.module';
     ReservationService,
     ValidateService
   ],
-  entryComponents: [ReservationModalComponent, MakeReservationFormComponent],
+  entryComponents: [
+    ReservationModalComponent,
+    MakeReservationFormComponent,
+    InfoModalComponent
+  ],
 })
 export class RestaurantsModule { }

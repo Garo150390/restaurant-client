@@ -8,6 +8,7 @@ import {
   MatProgressSpinnerModule,
   MatSelectModule
 } from '@angular/material';
+import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 
@@ -22,7 +23,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatDialogModule,
     MatProgressSpinnerModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+    MatListModule
   ],
 })
 export class MaterialModule { }

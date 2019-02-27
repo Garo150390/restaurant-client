@@ -7,6 +7,7 @@ import { StorageService } from '../../core/services/storage.service';
 import { CustomValidators } from '../../shared/custom-validators';
 import { UserService } from '../../core/services/user.service';
 import { AuthService } from '../../core/services/auth.service';
+import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -22,10 +23,7 @@ export class RegisterComponent implements OnInit {
               private router: Router) {
 
     this.registerForm = new FormGroup({
-      'name': new FormControl('', [
-        Validators.required,
-        Validators.pattern(ValidatorHelper.nameRegEx)
-      ]),
+      'name': new FormControl('', ),
       'surname': new FormControl('', [
         Validators.required,
         Validators.pattern(ValidatorHelper.nameRegEx)
@@ -101,7 +99,7 @@ export class RegisterComponent implements OnInit {
         StorageService.saveItem('accessToken', user.tokens.accessToken);
         StorageService.saveItem('refreshToken', user.tokens.refreshToken);
         this.router.navigateByUrl('/');
-      }, (err) => {
+      }, (err: HttpErrorResponse) => {
         console.log(err);
         Object.keys(err.error).forEach((key) => {
           this.registerForm.controls[key].setErrors({'incorrect': true});

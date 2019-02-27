@@ -17,8 +17,10 @@ export class TableBadgeComponent {
   constructor(private dialog: MatDialog) { }
 
   public selectTable(): void {
-    ReservationService.request.startTime = this.time.startTime;
-    ReservationService.request.endTime = this.time.endTime;
+    const startDate = ReservationService.request.startTime.split(' ')[0];
+    const endDate = ReservationService.request.endTime.split(' ')[0];
+    ReservationService.request.startTime = `${startDate} ${this.time.startTime}`;
+    ReservationService.request.endTime = `${endDate} ${this.time.endTime}`;
     this.dialog.open(ReservationModalComponent, {
       width: '550px',
       data: {}

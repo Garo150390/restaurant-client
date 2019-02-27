@@ -53,7 +53,7 @@ export class MakeReservationFormComponent implements OnInit {
   }
 
   private createFormControls(): void {
-    this.date = new FormControl('', [Validators.required]);
+    this.date = new FormControl('', Validators.required);
     this.guestsCount = new FormControl('1');
   }
 
@@ -94,9 +94,11 @@ export class MakeReservationFormComponent implements OnInit {
         });
         this.tables = data.data;
       }, (error) => {
-        this.showSpinner = false;
-        this.errorMessage = error.error.message;
         console.log(error);
+        this.showSpinner = false;
+        if (error.status === 401) {
+          this.errorMessage = error.error.message;
+        }
       });
   }
 

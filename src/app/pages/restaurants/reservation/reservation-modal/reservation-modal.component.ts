@@ -1,13 +1,15 @@
 import {
-  MAT_DIALOG_DATA,
+  MAT_DIALOG_DATA, MatDialog,
   MatDialogRef
 } from '@angular/material';
-import {Component, Inject, OnInit} from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { ReservationService } from '../../../../core/services/reservation.service';
 import { ValidateService } from '../../../../core/services/validate.service';
 import { ValidatorHelper } from '../../../../core/helpers/validator.helper';
+import { InfoModalComponent } from './info-modal/info-modal.component';
 
 @Component({
   selector: 'app-reservation-modal',
@@ -23,6 +25,7 @@ export class ReservationModalComponent implements OnInit {
   public occasions: FormControl;
   public message: FormControl;
   public reservationForms: FormGroup;
+  public spinner = false;
   public celebrations = [
     {value: 'birthday', name: 'Birthday'},
     {value: 'anniversary', name: 'Anniversary'},
@@ -32,6 +35,7 @@ export class ReservationModalComponent implements OnInit {
   ];
 
   constructor(private reservationService: ReservationService,
+              public dialog: MatDialog,
               public dialogRef: MatDialogRef<ReservationModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) {
   }
@@ -46,7 +50,7 @@ export class ReservationModalComponent implements OnInit {
       Validators.required,
       Validators.pattern(ValidatorHelper.nameRegEx)
     ]);
-    this.surname = new FormControl('', [
+    this.surname = new FormControl(null, [
       Validators.pattern(ValidatorHelper.nameRegEx)
     ]);
     this.email = new FormControl('', [
@@ -57,7 +61,7 @@ export class ReservationModalComponent implements OnInit {
       Validators.required,
       Validators.pattern(ValidatorHelper.phoneRegex),
     ]);
-    this.message = new FormControl('');
+    this.message = new FormControl(null);
     this.occasions = new FormControl(null);
   }
 
@@ -73,21 +77,35 @@ export class ReservationModalComponent implements OnInit {
   }
 
   public submitReservationForm() {
+    this.spinner = true;
     if (this.reservationForms.invalid) {
       ValidateService.validateAllFormFields(this.reservationForms);
-    } else {
-      const orderedData = ReservationService.request;
-      const reservationFormValues = this.reservationForms.getRawValue();
-      ReservationService.request = {
-        ...orderedData,
-        ...reservationFormValues
-      };
-      this.reservationService.bookingTable(ReservationService.request)
-        .subscribe((data) => {
-          console.log(data);
-        }, (err) => {
-          console.log(err);
-        });
+      return this.spinner = false;
     }
+    const orderedData = ReservationService.request;
+    const reservationFormValues = this.reservationForms.getRawValue();
+    ReservationService.request = {
+      ...orderedData,
+      ...reservationFormValues
+    };
+    this.reservationService.bookingTable(ReservationService.request)
+      .subscribe((data) => {
+        this.dialogRef.close('sax lav e');
+        this.dialog.open(InfoModalComponent, {
+          width: '550px',
+          data: {success: true, data}
+        });
+        this.spinner = false;
+      }, (err: HttpErrorResponse) => {
+        console.log(err);
+        const error = err.error.errors;
+        for (const key in error) {
+          if (error.hasOwnProperty(key) && this[key]) {
+            this[key].setErrors({'incorrect': error[key][0] || error[key]});
+            console.log(this[key]);
+          }
+        }
+        this.spinner = false;
+      });
   }
 }
