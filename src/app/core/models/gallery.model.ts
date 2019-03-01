@@ -4,8 +4,8 @@ export interface GalleryModel {
 }
 
 export interface ImageModel {
-  name: string;
-  id?: number;
+  src: string;
+  _id: number;
   description: string;
   thumb: string;
 }

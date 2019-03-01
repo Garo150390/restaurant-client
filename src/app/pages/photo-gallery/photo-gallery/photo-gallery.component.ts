@@ -1,18 +1,43 @@
+import {
+  Gallery,
+  GalleryItem,
+  GalleryRef,
+  ThumbnailsPosition
+} from '@ngx-gallery/core';
+import {
+  animate,
+  style,
+  transition,
+  trigger
+} from '@angular/animations';
 import { Lightbox } from '@ngx-gallery/lightbox';
 import { ActivatedRoute } from '@angular/router';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { Component, ElementRef, OnInit } from '@angular/core';
-import { Gallery, GalleryItem, GalleryRef, ThumbnailsPosition } from '@ngx-gallery/core';
 
 import { GalleryService } from '../../../core/services/gallery.service';
 import { ImageModel } from '../../../core/models';
 
-declare const $: any;
-
 @Component({
   selector: 'app-photo-gallery',
   templateUrl: './photo-gallery.component.html',
-  styleUrls: ['./photo-gallery.component.scss', ],
+  styleUrls: ['./photo-gallery.component.scss'],
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({transform: 'scale(0.5)', opacity: 0}),
+        animate('.75s ease-out',
+          style({transform: 'scale(1)', opacity: 1})
+        )
+      ]),
+      transition(':leave', [
+        style({transform: 'scale(1)', opacity: 1, height: '*'}),
+        animate('.75s ease-out',
+          style({transform: 'scale(0.5)', opacity: 0})
+        )
+      ]),
+    ]),
+  ]
 })
 export class PhotoGalleryComponent implements OnInit {
 
@@ -20,6 +45,7 @@ export class PhotoGalleryComponent implements OnInit {
   public galleryItems: Array<GalleryItem>;
   public p: number;
   public total: number;
+  public itemsPerPage = GalleryService.limit;
   public lightboxGalleryRef: GalleryRef;
   public galleryId = 'myLightbox';
 
@@ -66,26 +92,14 @@ export class PhotoGalleryComponent implements OnInit {
     });
   }
 
-
   public changePage(page: number): void {
-    if (page === 1) {
-      this.galleryService.getPhotos(page)
-        .subscribe((data) => {
-          this.photos = data.data;
-          this.p = page;
-          this.lightboxGalleryRef.load(this.galleryService.getGalleryItem(data.data));
-        }, (error) => {
-          console.log(error);
-        });
-    } else {
-      this.galleryService.getPhotos2(page)
-        .subscribe((data) => {
-          this.photos = data.data;
-          this.p = page;
-          this.lightboxGalleryRef.load(this.galleryService.getGalleryItem(data.data));
-        }, (error) => {
-          console.log(error);
-        });
-    }
+    this.galleryService.getPhotos(page)
+      .subscribe((data) => {
+        this.photos = data.data;
+        this.p = page;
+        this.lightboxGalleryRef.load(this.galleryService.getGalleryItem(data.data));
+      }, (error) => {
+        console.log(error);
+      });
   }
 }

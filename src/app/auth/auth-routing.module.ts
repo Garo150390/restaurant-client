@@ -1,9 +1,9 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
-import {RegisterComponent} from './register/register.component';
-import {LoginComponent} from './login/login.component';
-import {AuthComponent} from './component/auth.component';
+import { RegisterComponent } from './register/register.component';
+import { AuthComponent } from './component/auth.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {

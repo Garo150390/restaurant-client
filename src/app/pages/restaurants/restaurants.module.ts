@@ -16,7 +16,6 @@ import { ValidateService } from '../../core/services/validate.service';
 import { RestaurantComponent } from './restauran/restaurant.component';
 import { MakeReservationFormComponent } from './reservation/make-reservation-form/make-reservation-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MenuService } from '../../core/services/menu.service';
 import { ReservationModalComponent } from './reservation/reservation-modal/reservation-modal.component';
 import { SharedModule } from '../../shared/shared.module';
 import { MenuComponent } from './menu/menu.component';
@@ -48,7 +47,6 @@ import { InfoModalComponent } from './reservation/reservation-modal/info-modal/i
   providers: [
     { provide: MatDialogRef, useValue: {} },
     { provide: MAT_DIALOG_DATA, useValue: [] },
-    MenuService,
     ReservationService,
     ValidateService
   ],

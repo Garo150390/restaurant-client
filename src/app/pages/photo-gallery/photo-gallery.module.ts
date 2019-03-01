@@ -10,6 +10,8 @@ import { PhotoGalleryRoutingModule } from './photo-gallery-routing.module';
 import { GalleryService } from '../../core/services/gallery.service';
 import { SharedModule } from '../../shared/shared.module';
 import { PhotoComponent } from './photo/photo.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from '../../core/interceptor/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,11 @@ import { PhotoComponent } from './photo/photo.component';
   ],
   providers: [
     GalleryService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
     /*{
       provide: OverlayContainer,
       useFactory: () => new AppOverlayContainer(PhotoGalleryComponent)
